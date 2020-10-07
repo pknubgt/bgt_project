@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Source>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</Source>
+    <SmallTileSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</SmallTileSource>
+    <MediumTileSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</MediumTileSource>
+    <WideTileSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</WideTileSource>
+    <LargeTileSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</LargeTileSource>
+    <AppIconSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</AppIconSource>
+    <SplashScreenSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</SplashScreenSource>
+    <PackageLogoSource>D:\Project\BGT\BGTTablet_U_0706_evening\BGTTablet_U\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</PackageLogoSource>
+    <ProjectView>ShowAllFiles</ProjectView>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DeviceId>30F105C9-681E-420b-A277-7C086EAD8A4E</DeviceId>
+    <UseEmulator>true</UseEmulator>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,30 @@
+﻿<Page
+    x:Class="BGTviewer.NewView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BGTviewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting">
+
+    <Grid>
+      
+        <Charting:Chart x:Name="LineChart" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="SkyBlue" Grid.Row="1">
+            <Charting:StackedLineSeries>
+                <Charting:StackedLineSeries.SeriesDefinitions>
+                    <Charting:SeriesDefinition                       
+                    DependentValuePath="strength"   
+                    IndependentValuePath="index"
+                    IsTapEnabled="True"
+                    Title="pressure"    />
+                    <Charting:SeriesDefinition
+                    Title="selected"                      
+                    DependentValuePath="strength"
+                    IndependentValuePath="index"/>
+                </Charting:StackedLineSeries.SeriesDefinitions>
+            </Charting:StackedLineSeries>
+        </Charting:Chart>
+    </Grid>
+</Page>

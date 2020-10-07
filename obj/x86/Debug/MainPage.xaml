@@ -1,0 +1,47 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="BGTviewer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BGTviewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    
+
+    <Grid>
+        <StackPanel x:ConnectionId='2' x:Name="titlePanel" Margin="10,10,10,0">
+            <Grid>
+                <Image x:ConnectionId='6' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                            HorizontalAlignment="Left"/>
+                <Image Height="30" Width="30" Source="/Assets/check.png" HorizontalAlignment="Right"/>
+                <InkToolbar x:ConnectionId='7' x:Name="toolbar"                                      HorizontalAlignment="Center" InitialControls="None">
+                    <InkToolbarCustomToolButton x:ConnectionId='8' x:Name="toolButtonLasso"                          ToolTipService.ToolTip="Selection tool">
+                        <SymbolIcon x:ConnectionId='9'                              />
+                    </InkToolbarCustomToolButton>
+                </InkToolbar>
+            </Grid>
+
+        </StackPanel>
+
+        <Grid Background="{ThemeResource SystemControlBackgroundChromeWhiteBrush}" Margin="0,50,0,0">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="648*"/>
+                <ColumnDefinition Width="56*"/>
+                <ColumnDefinition Width="14*"/>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="712*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>-->
+            
+            <Canvas x:ConnectionId='3' x:Name="selectionCanvas" Margin="0,0,300,0"/>
+            <InkCanvas x:ConnectionId='4' x:Name="inkCanvas" Margin="0,0,300,0"/>
+           
+            <StackPanel HorizontalAlignment="Right" Width="300" Margin="10,10,10,0" Background="Aqua">
+                <TextBlock x:ConnectionId='5' x:Name="PressureInfo" Text="Pressure" TextWrapping="Wrap" Foreground="Maroon" FontSize="24"/>
+            </StackPanel>
+            <!--.ColumnSpan="7"/>-->
+        </Grid>
+    </Grid>
+</Page>
+

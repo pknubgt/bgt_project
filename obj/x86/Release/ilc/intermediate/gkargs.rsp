@@ -1,0 +1,7 @@
+﻿"D:\Project\BGT\BGTviewer\obj\x86\Release\ilc\in\BGTviewer.exe"
+/Lib:"D:\Project\BGT\BGTviewer\obj\x86\Release\ilc\in"
+/Lib:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.native.compiler\2.2.8-rel-28605-00\tools\x86\ilc\lib\Private"
+/WinMD:"D:\Project\BGT\BGTviewer\obj\x86\Release\ilc\in\WinMetadata\Windows.winmd"
+/VSTelemetrySessionSettings:"{"IsOptedIn":true,"HostName":"Dev14","AppInsightsInstrumentationKey":"f144292e-e3b2-4011-ac90-20e5c03fbce5","AsimovInstrumentationKey":"AIF-312cbd79-9dbb-4c48-a7da-3cc2a931cb70","AppId":1001,"UserId":"f587e7de-63ae-4be2-ba8d-36ab59757599","Id":"6dcceb22-bd33-4fcf-8b27-b306be63183d","ProcessStartTime":637298723897469536}"
+/RdXmlPath:"C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.net.native.compiler\2.2.8-rel-28605-00\tools\LibraryXML"
+/RunOnlyPreDR

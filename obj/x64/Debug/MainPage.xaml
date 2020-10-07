@@ -1,0 +1,225 @@
+﻿<Page x:ConnectionId='1' x:Name="Page"
+    x:Class="BGTviewer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BGTviewer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:Charting="using:WinRTXamlToolkit.Controls.DataVisualization.Charting"
+>
+
+
+    <!--
+    InkToolbar
+    InkCanvas
+    Click="ToolButton_Lasso"
+    ToolTipService.ToolTip="Selection tool"
+    -->
+    <Grid>
+        <StackPanel x:ConnectionId='2' x:Name="titlePanel" Margin="10,10,10,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                    <ColumnDefinition Width="25*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image x:ConnectionId='49' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                            Grid.Column="0" HorizontalAlignment="Left"/>
+                <Image Height="30" Width="30" Source="/Assets/check.png" Grid.Column="3" HorizontalAlignment="Right"/>
+
+                <InkToolbar x:ConnectionId='50' x:Name="toolbar"                                      Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
+                    <InkToolbarCustomToolButton x:ConnectionId='57' x:Name="toolButtonLasso"                          ToolTipService.ToolTip="Selection tool">
+                        <SymbolIcon x:ConnectionId='58'                              />
+                    </InkToolbarCustomToolButton>
+                </InkToolbar>
+
+                <Image x:ConnectionId='51' Height="30" Width="30" Source="/Assets/pencil.png" Grid.Column="1" HorizontalAlignment="Right"                         />
+
+                <MenuBar HorizontalAlignment="Center" Grid.Column="2">
+                    <MenuBarItem Title="angle">
+                        <MenuFlyoutItem x:ConnectionId='53' Text="use click"                  />
+                        <MenuFlyoutItem x:ConnectionId='54' Text="use stroke"                   />
+                        <MenuFlyoutItem x:ConnectionId='55' Text="auto"                 />
+                        <MenuFlyoutItem x:ConnectionId='56' Text="해제"                />
+                    </MenuBarItem>
+                </MenuBar>
+                <Button x:ConnectionId='52' x:Name="clear"                                Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
+            </Grid>
+
+        </StackPanel>
+
+        <Grid Background="{ThemeResource SystemControlBackgroundChromeWhiteBrush}" Margin="0,50,0,0">
+            <!--<Grid.ColumnDefinitions>
+                <ColumnDefinition Width="18*"/>
+                <ColumnDefinition Width="648*"/>
+                <ColumnDefinition Width="56*"/>
+                <ColumnDefinition Width="14*"/>
+                <ColumnDefinition Width="37*"/>
+                <ColumnDefinition Width="712*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>-->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="95*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*"/>
+                <ColumnDefinition Width="35*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock x:ConnectionId='3' Grid.Column="0" Grid.Row="0" x:Name="instruction" Text="점수를 측정하기 위해 순서에 따른 지시사항을 표시함" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <Canvas x:ConnectionId='4' x:Name="selectionCanvas" Grid.Column="0" Grid.Row="1">
+                <Image x:ConnectionId='48' x:Name="img" Stretch="UniformToFill" />
+            </Canvas>
+            <InkCanvas x:ConnectionId='5' x:Name="inkCanvas" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" />
+
+            <StackPanel BorderThickness="2" BorderBrush="Black" Grid.RowSpan="2" Grid.Column="1">
+                <Grid Grid.Column="1" BorderThickness="2" BorderBrush="Black" Margin="5" VerticalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                        <RowDefinition Height="20*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="25*"/>
+                        <ColumnDefinition Width="30*"/>
+                        <ColumnDefinition Width="25*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- <Button x:Name="open view" Click="showChart" Content="openview" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="Black" Margin="5"/> -->
+                    
+                    <Button x:ConnectionId='6' x:Name="fA" Content="figure A"                   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='7' x:Name="f1" Content="figure 1"                   Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='8' x:Name="f2" Content="figure 2"                   Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='9' x:Name="f3" Content="figure 3"                   Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='10' x:Name="f4" Content="figure 4"                   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='11' x:Name="f5" Content="figure 5"                   Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='12' x:Name="f6" Content="figure 6"                   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='13' x:Name="f7" Content="figure 7"                   Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='14' x:Name="f8" Content="figure 8"                   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <TextBlock x:ConnectionId='15' x:Name="name" Grid.Column="0" Grid.Row="4" Text="이름" HorizontalAlignment="Center"  Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='16' x:Name="age" Grid.Column="2" Grid.Row="4" Text="나이" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='17' x:Name="number" Grid.Column="0" Grid.Row="5" Text="번호" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='18' x:Name="징후1" Grid.Column="0" Grid.Row="7" Text="징후" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='19' x:Name="점수1" Grid.Column="1" Grid.Row="7" Text="점수" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='20' x:Name="징후2" Grid.Column="2" Grid.Row="7" Text="징후" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='21' x:Name="점수2" Grid.Column="3" Grid.Row="7" Text="점수" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='22' x:Name="배열순서" Content="배열순서" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='23' x:Name="도형A의위치" Content="도형A의 위치" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="12" Margin="5"/>
+                    <Button x:ConnectionId='24' x:Name="공간사용" Content="공간사용" Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='25' x:Name="중첩" Content="중첩" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='26' x:Name="용지회전" Content="용지회전" Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='27' x:Name="폐쇄손란" Content="폐쇄손란" Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+
+                    <Button x:ConnectionId='28' x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"                       />
+                    <TextBlock x:ConnectionId='29' x:Name="resultCrossing" Grid.Column="1" Grid.Row="14" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    
+                    <Button x:ConnectionId='30' x:Name="곡선곤란" Content="곡선곤란" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='31' x:Name="각의변화" Content="각의변화" Grid.Column="0" Grid.Row="16" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='32' x:Name="지각적회전" Content="지각적회전" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='33' x:Name="퇴영" Content="퇴영" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='34' x:Name="단순화" Content="단순화" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='35' x:Name="단편화" Content="단편화" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='36' x:Name="중복곤란" Content="중복곤란" Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='37' x:Name="정교화" Content="정교화" Grid.Column="2" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='38' x:Name="고집화" Content="고집화" Grid.Column="2" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='39' x:Name="재묘사" Content="재묘사" Grid.Column="2" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='40' x:Name="평균" Grid.Column="2" Grid.Row="16" Text="평균" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='41' x:Name="결과" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="17" Text="결과" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='42' x:Name="소속집단" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="17" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+
+                    <Charting:Chart x:ConnectionId='43' x:Name="LineChart" Margin="5" Grid.ColumnSpan="4" Grid.Row="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="SkyBlue">
+                        <Charting:LineSeries x:ConnectionId='46'
+                           x:Name="Pressure"
+                           DependentValuePath = "strength"
+                            IndependentValuePath = "index"
+                            IsTapEnabled = "True"
+                            Title = "Pressure"/>
+                        <Charting:LineSeries x:ConnectionId='47'
+                            x:Name="Selected"
+                           DependentValuePath = "strength"
+                            IndependentValuePath = "index"
+                            IsTapEnabled = "True"
+                            Title = "Selected"/>
+                    </Charting:Chart>
+
+                    <TextBlock x:ConnectionId='44' x:Name="text1" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="19" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='45' x:Name="text2" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="20" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <!--  
+  <Charting:LineSeries
+                           x:Name="Pressure"
+                           DependentValuePath = "strength"
+                            IndependentValuePath = "index"
+                            IsTapEnabled = "True"
+                            Title = "Pressure"/>
+                        <Charting:LineSeries
+                            x:Name="Selected"
+                           DependentValuePath = "strength"
+                            IndependentValuePath = "index"
+                            IsTapEnabled = "True"
+                            Title = "Selected"/>
+
+                    <Charting:StackedLineSeries>
+                            <Charting:StackedLineSeries.SeriesDefinitions>
+                                <Charting:SeriesDefinition                      
+                                    DependentValuePath="strength"   
+                                    IndependentValuePath="index"
+                                    IsTapEnabled="True"
+                                    Title="pressure"    />
+                                <Charting:SeriesDefinition
+                                    Title="selected"                      
+                                    DependentValuePath="strength"
+                                    IndependentValuePath="index"/>      
+                            </Charting:StackedLineSeries.SeriesDefinitions>
+                        </Charting:StackedLineSeries>
+                    
+                    
+                    
+                    -->
+
+
+
+
+
+                    <!-- <TextBlock Text="Pressure" TextWrapping="Wrap" Foreground="Maroon" FontSize="24" Grid.Row="0" HorizontalAlignment="Center"/>
+                    <Button x:Name="value" Content="Pressure value" Foreground="Black" FontSize="20" Grid.Row="1" HorizontalAlignment="Stretch"/>
+                    <Button x:Name="value1" Content="Pressure value" Foreground="Orange" FontSize="20" Grid.Row="2" HorizontalAlignment="Stretch" Click="clickButton1"/>
+                    <Button x:Name="value2" Content="Pressure value" Foreground="Yellow" FontSize="20" Grid.Row="3" HorizontalAlignment="Stretch" Click="clickButton2"/>
+                    <Button x:Name="value3" Content="Pressure value" Foreground="Green" FontSize="20" Grid.Row="4" HorizontalAlignment="Stretch" Click="clickButton3"/>
+                    <Button x:Name="value4" Content="Pressure value" Foreground="Blue" FontSize="20" Grid.Row="5" HorizontalAlignment="Stretch" Click="clickButton4"/>
+                    <Button x:Name="value5" Content="Pressure value" Foreground="Navy" FontSize="20" Grid.Row="6" HorizontalAlignment="Stretch" Click="clickButton5"/>
+                    <Button x:Name="value6" Content="Pressure value" Foreground="Purple" FontSize="20" Grid.Row="7" HorizontalAlignment="Stretch" Click="clickButton6"/>
+                    <TextBlock x:Name ="difference" Text="difference" TextWrapping="Wrap" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Grid.Row="8"/>
+                    <TextBlock x:Name ="angle" Text="angle" TextWrapping="Wrap" Foreground="Black" FontSize="20" HorizontalAlignment="Center" Grid.Row="9"/>
+                    <TextBlock x:Name="check" Text="check" Grid.Row="10" Foreground="Black" FontSize="20" HorizontalAlignment="Center"/>
+                    !-->
+                </Grid>
+            </StackPanel>
+            <!--.ColumnSpan="7"/>-->
+
+        </Grid>
+    </Grid>
+</Page>
+

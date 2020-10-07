@@ -1,0 +1,1 @@
+D:\Project\Project_bgt\BGTviewer-2020.10.07\BGTviewer.csproj;x64
