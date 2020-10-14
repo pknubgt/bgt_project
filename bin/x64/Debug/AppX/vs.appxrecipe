@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>DESKTOP-8HM670T</Machine>
-    <WindowsUser>USER</WindowsUser>
+    <Machine>DESKTOP-G28NJI7</Machine>
+    <WindowsUser>user</WindowsUser>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetOsVersion>10.0</TargetOsVersion>
     <TargetOsDescription>Windows 10.0</TargetOsDescription>
@@ -10,7 +10,7 @@
     <PackageArchitecture>x64</PackageArchitecture>
     <PackageIdentityName>99c2343f-8bed-4f8a-9010-d5e79a9c5980</PackageIdentityName>
     <PackageIdentityPublisher>CN=heavensky</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Project\Project_bgt\BGTviewer-2020.10.07\obj\x64\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\BGTProject\obj\x64\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType>
     </RemoteDeploymentType>
     <PackageRegistrationPath>
@@ -18,8 +18,8 @@
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
-    <LayoutDir>D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>6A39D62CD8BD974A818F1BB2D9819355AA58070FEBA08E8901D3514961168E0B</RegisteredManifestChecksum>
+    <LayoutDir>C:\BGTProject\bin\x64\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>BAE1A72FABF0FFCD45A94BBDAD073035D9BF19399935C168BC288BEC4EB1433E</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>99c2343f-8bed-4f8a-9010-d5e79a9c5980_1.0.0.0_x64__4cyg4469rg6fr</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>99c2343f-8bed-4f8a-9010-d5e79a9c5980_4cyg4469rg6fr!App</RegisteredUserModeAppID>
     <RegisteredPackageID>99c2343f-8bed-4f8a-9010-d5e79a9c5980</RegisteredPackageID>
@@ -27,26 +27,26 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\Core\AppxManifest.xml">
+    <AppXManifest Include="C:\BGTProject\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-10-07T08:07:51.764</Modified>
+      <Modified>2020-10-14T16:43:16.333</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\BGTviewer.exe">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\BGTviewer.exe">
       <PackagePath>entrypoint\BGTviewer.exe</PackagePath>
-      <Modified>2020-10-07T08:07:43.195</Modified>
+      <Modified>2020-10-14T16:43:02.327</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
       <Modified>2020-02-27T10:17:32.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit.dll">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit.dll">
       <PackagePath>WinRTXamlToolkit.dll</PackagePath>
       <Modified>2017-02-12T03:18:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization.dll">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization.dll">
       <PackagePath>WinRTXamlToolkit.Controls.DataVisualization.dll</PackagePath>
       <Modified>2017-02-12T03:18:52.000</Modified>
     </AppxPackagedFile>
@@ -54,373 +54,373 @@
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2019-03-18T09:36:56.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml">
       <PackagePath>WinRTXamlToolkit\WinRTXamlToolkit.xr.xml</PackagePath>
       <Modified>2017-02-12T03:18:48.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml">
       <PackagePath>WinRTXamlToolkit\Properties\WinRTXamlToolkit.rd.xml</PackagePath>
       <Modified>2017-02-12T03:18:50.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.xr.xml">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.xr.xml">
       <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.xr.xml</PackagePath>
       <Modified>2017-02-12T03:18:52.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\USER\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization\Properties\WinRTXamlToolkit.Controls.DataVisualization.rd.xml">
+    <AppxPackagedFile Include="C:\Users\user\.nuget\packages\winrtxamltoolkit.controls.datavisualization\2.3.0\lib\uap10.0\WinRTXamlToolkit.Controls.DataVisualization\Properties\WinRTXamlToolkit.Controls.DataVisualization.rd.xml">
       <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Properties\WinRTXamlToolkit.Controls.DataVisualization.rd.xml</PackagePath>
       <Modified>2017-02-12T03:18:54.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\check.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\check.png">
       <PackagePath>Assets\check.png</PackagePath>
-      <Modified>2020-06-28T09:02:56.000</Modified>
+      <Modified>2020-06-28T09:02:55.211</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\eraser.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\eraser.png">
       <PackagePath>Assets\eraser.png</PackagePath>
-      <Modified>2020-06-29T13:16:44.000</Modified>
+      <Modified>2020-06-29T13:16:43.350</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\icon_btn_open.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\icon_btn_open.png">
       <PackagePath>Assets\icon_btn_open.png</PackagePath>
-      <Modified>2020-06-28T08:02:04.000</Modified>
+      <Modified>2020-06-28T08:02:02.824</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LargeTile.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.351</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LargeTile.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LargeTile.scale-125.png">
       <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.371</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LargeTile.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LargeTile.scale-150.png">
       <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.398</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LargeTile.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LargeTile.scale-200.png">
       <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.440</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LargeTile.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LargeTile.scale-400.png">
       <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.585</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\pencil.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\pencil.png">
       <PackagePath>Assets\pencil.png</PackagePath>
-      <Modified>2020-06-29T13:16:22.000</Modified>
+      <Modified>2020-06-29T13:16:20.218</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SmallTile.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SmallTile.scale-100.png">
       <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.076</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SmallTile.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SmallTile.scale-125.png">
       <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.084</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SmallTile.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SmallTile.scale-150.png">
       <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.092</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SmallTile.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SmallTile.scale-200.png">
       <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.100</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SmallTile.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SmallTile.scale-400.png">
       <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.115</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.768</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SplashScreen.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SplashScreen.scale-125.png">
       <PackagePath>Assets\SplashScreen.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.801</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SplashScreen.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SplashScreen.scale-150.png">
       <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.846</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SplashScreen.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SplashScreen.scale-400.png">
       <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.181</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square150x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square150x150Logo.scale-100.png">
       <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.126</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square150x150Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square150x150Logo.scale-125.png">
       <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.135</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square150x150Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square150x150Logo.scale-150.png">
       <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.147</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square150x150Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square150x150Logo.scale-400.png">
       <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.202</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.711</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.717</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.744</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.723</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.730</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.672</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.705</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-unplated_targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-32.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.684</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.690</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.scale-100.png">
       <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.591</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.scale-125.png">
       <PackagePath>Assets\Square44x44Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.598</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.scale-150.png">
       <PackagePath>Assets\Square44x44Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.605</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.scale-400.png">
       <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.622</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-16.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-16.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.628</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-24.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-24.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.634</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-256.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-256.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.661</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-32.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-32.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-32.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.640</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-48.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-48.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.647</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.188</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\StoreLogo.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\StoreLogo.scale-125.png">
       <PackagePath>Assets\StoreLogo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.196</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\StoreLogo.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\StoreLogo.scale-150.png">
       <PackagePath>Assets\StoreLogo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.203</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\StoreLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\StoreLogo.scale-200.png">
       <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.211</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\StoreLogo.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\StoreLogo.scale-400.png">
       <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:35.223</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Wide310x150Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Wide310x150Logo.scale-100.png">
       <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.213</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Wide310x150Logo.scale-125.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Wide310x150Logo.scale-125.png">
       <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.226</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Wide310x150Logo.scale-150.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Wide310x150Logo.scale-150.png">
       <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.241</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Wide310x150Logo.scale-400.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Wide310x150Logo.scale-400.png">
       <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.336</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\LockScreenLogo.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\LockScreenLogo.scale-200.png">
       <PackagePath>Assets\LockScreenLogo.scale-200.png</PackagePath>
-      <Modified>2020-06-12T05:57:38.000</Modified>
+      <Modified>2020-06-12T05:57:36.451</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\SplashScreen.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.917</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square150x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.162</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.scale-200.png">
       <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.612</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Square44x44Logo.targetsize-24_altform-unplated.png">
       <PackagePath>Assets\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.678</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Assets\Wide310x150Logo.scale-200.png">
+    <AppxPackagedFile Include="C:\BGTProject\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-07-06T11:10:36.000</Modified>
+      <Modified>2020-07-06T11:10:34.264</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\Properties\Default.rd.xml">
+    <AppxPackagedFile Include="C:\BGTProject\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
-      <Modified>2020-09-23T02:46:42.000</Modified>
+      <Modified>2020-09-23T02:46:41.379</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\BGTviewer.xr.xml">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\BGTviewer.xr.xml">
       <PackagePath>BGTviewer.xr.xml</PackagePath>
-      <Modified>2020-10-07T06:19:04.000</Modified>
+      <Modified>2020-10-07T06:19:02.275</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-10-07T08:07:42.515</Modified>
+      <Modified>2020-10-14T16:43:01.179</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-10-07T08:07:42.514</Modified>
+      <Modified>2020-10-14T16:43:01.178</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
       <Modified>2019-03-18T08:33:42.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-10-07T08:07:46.060</Modified>
+      <Modified>2020-10-14T16:43:06.599</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Project\Project_bgt\BGTviewer-2020.10.07\bin\x64\Debug\Core\BGTviewer.exe">
+    <AppxPackagedFile Include="C:\BGTProject\bin\x64\Debug\Core\BGTviewer.exe">
       <PackagePath>BGTviewer.exe</PackagePath>
-      <Modified>2020-10-07T08:07:51.750</Modified>
+      <Modified>2020-10-14T16:43:16.310</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx">
       <Name>Microsoft.NET.CoreRuntime.2.2</Name>
       <Version>2.2.27902.3</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreRuntime.2.2, MinVersion = 2.2.27902.3, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreRuntime.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.28529.0</Version>
       <Architecture>x86</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.28529.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-x86.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.28529.0</Version>
       <Architecture>x64</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.28529.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-x64.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
-    <ResolvedSDKReference Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
+    <ResolvedSDKReference Include="C:\Users\user\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx">
       <Name>Microsoft.NET.CoreFramework.Debug.2.2</Name>
       <Version>2.2.28529.0</Version>
       <Architecture>arm</Architecture>
       <FrameworkIdentity>Name = Microsoft.NET.CoreFramework.Debug.2.2, MinVersion = 2.2.28529.0, Publisher = %27CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US%27</FrameworkIdentity>
-      <AppxLocation>C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
+      <AppxLocation>C:\Users\user\.nuget\packages\runtime.win10-arm.microsoft.net.uwpcoreruntimesdk\2.2.10\build\..\tools\Appx\Microsoft.NET.CoreFramework.Debug.2.2.appx</AppxLocation>
       <MoreInfo>
       </MoreInfo>
     </ResolvedSDKReference>
