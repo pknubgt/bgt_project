@@ -34,6 +34,7 @@ namespace BGTviewer
     public class Figure
     {
         //선택된 도형을 평가할 때 필요한 정보들을 저장할 변수들(앞으로 차차 필요한 변수를 추가할 예정)
+        public string name;
         public Point figureStart = new Point();
         public int pointCount = 0;
         public float pressureAvg = 0.0f;
@@ -68,10 +69,16 @@ namespace BGTviewer
         // 생성자 함수
         public MainPage()
         {
-            /*
-            for (int i = 0; i < f_selected.Length; i++)
-                f_selected[i] = false;
-            */
+            for (int i = 0; i < 9; i++)
+            {
+                figure_info[i] = new Figure();
+                if (i == 0)
+                    figure_info[i].name = "figureA";
+                else
+                    figure_info[i].name = "figure" + i;
+
+                Debug.WriteLine(f_selected[i]);
+            }
 
             this.InitializeComponent();
             inkCanvas.InkPresenter.InputDeviceTypes |= CoreInputDeviceTypes.Mouse;
@@ -89,7 +96,7 @@ namespace BGTviewer
 
         }
 
-        //어떤 도형의 정보를 저장할 것인가?
+        //어떤 도형의 정보를 저장할 것인가? => 버튼을 누르면 해당하는 버튼의 select를 true로 바꿔줘서 선택됨을 확인한다.
         private void fA_select(object sender, RoutedEventArgs e)
         {
             f_selected[0] = true;
@@ -127,32 +134,32 @@ namespace BGTviewer
             f_selected[8] = true;
         }
 
+
+
         private void selected_figure()//어떤 도형 버튼이 선택됬는지 확인하고, 필요한 정보를 얻기위한 함수사용
         {
-            int count = 0;
             for (int i = 0; i < f_selected.Length; i++)
             {
-                if (f_selected[i] == true && pressure_select_mode != true)
+                if (f_selected[i] == true && pressure_select_mode != true)//버튼이 선택되었고 부분필압 버튼이 선택되지 않았을 경우
                 {
-                    DrawBoundingRect(figure_info[i]);
-                    CalcStrokeInfo(figure_info[i]);
+                    DrawBoundingRect(figure_info[i]);//해당하는 도형을 감싸는 사각형을 그리고 정보를 얻어온다.
+                    CalcStrokeInfo(figure_info[i]);//전체 필압을 측정하고 저장한다.
+                    instruction.Text = figure_info[i].name + " 전체 저장";
                     f_selected[i] = false;
+
+
+                    Debug.WriteLine(figure_info[i].pressureAvg);
+
+                    break;
                 }
-                else if (f_selected[i] == true && pressure_select_mode == true)
+                else if (f_selected[i] == true && pressure_select_mode == true)//버튼이 선택되었고 부분필압 버튼이 선택되었을 경우
                 {
-                    DrawBoundingRect(figure_info[i]);
+                    CalcStrokeInfo_part(figure_info[i]);//부분필압을 측정하고 저장한다. => 함수안에서도 pressure_select_mode를 체크한다.
+                    instruction.Text = figure_info[i].name + " 부분 선택 저장";
                     f_selected[i] = false;
-                }
-
-                /*
-                if (f_selected[i] == false)
-                    count++;
-
-                if(count == f_selected.Length - 1)
+                    break;
+                } else if (i == f_selected.Length - 1 && f_selected[i] == false)//아무 버튼도 선택되지 않았을 경우
                     instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
-                else
-                    instruction.Text = "저장";
-                */
             }
         }
 
@@ -334,20 +341,6 @@ namespace BGTviewer
 
         private void UnprocessedInput_PointerReleased(InkUnprocessedInput sender, PointerEventArgs args)//마우스의 누르고 있던 버튼을 땔 경우
         {
-            /*
-            for (int i = 0; i < f_selected.Length; i++)
-            {
-                if (f_selected[i] == true)
-                {
-                    instruction.Text = "저장";
-                    break;
-                }
-                else if (i == f_selected.Length - 1)
-                {
-                    instruction.Text = "정보를 저장할 해당하는 도형 버튼을 먼저 선택하세요";
-                    //selectionCanvas.Children.Clear();
-                }
-            }*/
 
             if (pressure_select_mode == true)//도형의 부분 필압을 얻어오는 버튼을 눌렀을 경우
             {
@@ -496,7 +489,6 @@ namespace BGTviewer
         //도형을 감싸는 사각형을 그리는 함수
         private void DrawBoundingRect(Figure f)
         {
-            f = new Figure();
 
             selectionCanvas.Children.Remove(lasso);
 
@@ -550,9 +542,57 @@ namespace BGTviewer
         //////////////////////////////////////////////////////////////////
         List<Pressure> pressurelist1;//전체 그래프의 값
         List<Pressure> pressurelist2;//선택된 그래프의 값
+
+        public void CalcStrokeInfo_part(Figure f)
+        {
+            var pressure = 0.0f;
+            var selected_pressure = 0.0f;
+            var nTotalPoints = 0;
+            var strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
+            float varTemp = 0.0f;
+
+            pressurelist2 = new List<Pressure>();
+
+            foreach (var stroke in strokes)
+            {
+                if (stroke.Selected != true)
+                    continue;
+                var points = stroke.GetInkPoints();
+                foreach (var pt in points)
+                {
+                    if (startposition.X <= pt.Position.X && startposition.Y <= pt.Position.Y &&
+                        lastposition.X >= pt.Position.X && lastposition.Y >= pt.Position.Y)
+                    {
+                        selected_pressure += pt.Pressure;
+                        varTemp += (pt.Pressure - pressure) * (pt.Pressure - pressure);//편차의 제곱의 합
+                        nTotalPoints++;
+
+                        if (pressurelist1.Exists(x => x.location == pt.Position) == true //전체 그래프에서 선택된 영역
+                            && pressurelist2.Exists(x => x.location == pt.Position) != true) //선택된 영역에서 중복되지 않는 값
+                        {
+                            int idx = pressurelist1.FindIndex(v => v.location == pt.Position);
+                            pressurelist2.Add(pressurelist1[idx]);
+                        }
+                    }
+                }
+            }
+            selected_pressure /= nTotalPoints;//선택영역의 평균
+            varTemp /= nTotalPoints;//분산
+            f.variance = varTemp;
+            f.standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
+
+            text2.Text = "교차점영역 필압의 평균 : " + selected_pressure.ToString();
+
+            (LineChart.Series[1] as LineSeries).ItemsSource = null;
+            (LineChart.Series[1] as LineSeries).ItemsSource = pressurelist2;
+
+            if (figure_info[6].standardDeviation != 0 && figure_info[7].standardDeviation != 0) //도형6과 도형7의 표준편차 값이 구해졌을 경우
+            {
+                checkCrossing(figure_info[6], figure_info[7]);//점수를 측정한다.
+            }
+        }
         public void CalcStrokeInfo(Figure f)
         {
-            f = new Figure();
 
             var pressure = 0.0f;
             var selected_pressure = 0.0f;
@@ -561,8 +601,6 @@ namespace BGTviewer
             int i = 0;
             float varTemp = 0.0f;
 
-            if (pressure_select_mode != true)
-            {
                 pressurelist1 = new List<Pressure>();
 
                 float sum = 0;
@@ -592,50 +630,6 @@ namespace BGTviewer
                 (LineChart.Series[0] as LineSeries).ItemsSource = null;
                 (LineChart.Series[1] as LineSeries).ItemsSource = null;
                 (LineChart.Series[0] as LineSeries).ItemsSource = pressurelist1;
-            }
-            else//지정한 사각형 안의 pressure 구하기
-            {
-
-                pressurelist2 = new List<Pressure>();
-
-                foreach (var stroke in strokes)
-                {
-                    if (stroke.Selected != true)
-                        continue;
-                    var points = stroke.GetInkPoints();
-                    foreach (var pt in points)
-                    {
-                        if (startposition.X <= pt.Position.X && startposition.Y <= pt.Position.Y &&
-                            lastposition.X >= pt.Position.X && lastposition.Y >= pt.Position.Y)
-                        {
-                            selected_pressure += pt.Pressure;
-                            varTemp += (pt.Pressure - pressure) * (pt.Pressure - pressure);//편차의 제곱의 합
-                            nTotalPoints++;
-
-                            if (pressurelist1.Exists(x => x.location == pt.Position) == true //전체 그래프에서 선택된 영역
-                                && pressurelist2.Exists(x => x.location == pt.Position) != true) //선택된 영역에서 중복되지 않는 값
-                            {
-                                int idx = pressurelist1.FindIndex(v => v.location == pt.Position);
-                                pressurelist2.Add(pressurelist1[idx]);
-                            }
-                        }
-                    }
-                }
-                selected_pressure /= nTotalPoints;//선택영역의 평균
-                varTemp /= nTotalPoints;//분산
-                f.variance = varTemp;
-                f.standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
-
-                text2.Text = "교차점영역 필압의 평균 : " + selected_pressure.ToString();
-
-                (LineChart.Series[1] as LineSeries).ItemsSource = null;
-                (LineChart.Series[1] as LineSeries).ItemsSource = pressurelist2;
-
-                if (figure_info[6].standardDeviation != 0 && figure_info[7].standardDeviation != 0) //도형6과 도형7의 표준편차 값이 구해졌을 경우
-                {
-                    checkCrossing(figure_info[6], figure_info[7]);//점수를 측정한다.
-                }
-            }
         }
 
         public void checkCrossing(Figure f) //figure6과 figure7을 합쳐서 점수내야함                                                   --- 일단 테스트 용으로 간단하게 만듬
@@ -644,7 +638,6 @@ namespace BGTviewer
             //Debug.WriteLine("분산 : " + f.variance.ToString());
             //Debug.WriteLine("표준편차 : " + f.standardDeviation.ToString());
 
-            f = new Figure();
 
             float m = f.pressureAvg;
             float s = f.standardDeviation;
@@ -669,8 +662,6 @@ namespace BGTviewer
             float compare = 0;
             int[] result = new int[2];
 
-            f6 = new Figure();
-            f7 = new Figure();
 
             for (int i = 0; i < 2; i++)
             {
