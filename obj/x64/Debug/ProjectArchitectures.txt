@@ -1,1 +1,1 @@
-D:\BGTProject\BGTviewer.csproj;x64
+D:\Project\Project_bgt\bgt_project\BGTviewer.csproj;x64

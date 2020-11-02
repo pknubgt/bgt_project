@@ -69,6 +69,22 @@ namespace BGTviewer
             }
         }
 
+        public void Bt_RR(object sender, RoutedEventArgs e)/////////////////////중첩
+        {
+            Reiteration rr = new Reiteration();
+            rr.reiteration(figure);
+            
+            RR.Text = rr.PSV.ToString();
+        }
+
+        public void Bt_OD(object sender, RoutedEventArgs e)/////////////////////중복곤란
+        {
+            OverlappingDifficulty od = new OverlappingDifficulty();
+            od.Overlapping_difficulty(figure);
+
+            OD.Text = od.PSV.ToString();
+        }
+
         private void Bt_fA(object sender, RoutedEventArgs e)
         {
             figure[0].selected = true;
@@ -515,7 +531,7 @@ namespace BGTviewer
                     instruction.Text = figure[i].Name + " 전체 저장";
                     figure[i].selected = false;
                     Debug.WriteLine(figure[i].Name + " " + figure[i].BoundingRect.X + " " + figure[i].BoundingRect.Y);
-                    Debug.WriteLine(figure[i].Points[1].X + " " + figure[i].Points[1].Y);
+                    //Debug.WriteLine(figure[i].Points[1].X + " " + figure[i].Points[1].Y);
 
                     break;
                 }
@@ -540,5 +556,6 @@ namespace BGTviewer
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
         }
 
+        
     }
 }

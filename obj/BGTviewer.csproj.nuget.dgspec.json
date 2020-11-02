@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\BGTProject\\BGTviewer.csproj": {}
+    "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj": {}
   },
   "projects": {
-    "D:\\BGTProject\\BGTviewer.csproj": {
+    "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\BGTProject\\BGTviewer.csproj",
+        "projectUniqueName": "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj",
         "projectName": "BGTviewer",
-        "projectPath": "D:\\BGTProject\\BGTviewer.csproj",
-        "packagesPath": "C:\\Users\\anemo\\.nuget\\packages\\",
-        "outputPath": "D:\\BGTProject\\obj\\",
+        "projectPath": "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj",
+        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+        "outputPath": "D:\\Project\\Project_bgt\\bgt_project\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\anemo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
