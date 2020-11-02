@@ -27,26 +27,26 @@
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image Height="30" Width="30" Source="/Assets/icon_btn_open.png" Tapped="Image_Tapped_Load" Grid.Column="0" HorizontalAlignment="Left"/>
+                <Image Height="30" Width="30" Source="/Assets/icon_btn_open.png" Tapped="Bt_ImageTappedLoad" Grid.Column="0" HorizontalAlignment="Left"/>
                 <Image Height="30" Width="30" Source="/Assets/check.png" Grid.Column="3" HorizontalAlignment="Right"/>
 
                 <InkToolbar x:Name="toolbar" TargetInkCanvas="{x:Bind inkCanvas}" Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
-                    <InkToolbarCustomToolButton x:Name="toolButtonLasso" Click="ToolButton_Lasso" ToolTipService.ToolTip="Selection tool">
+                    <InkToolbarCustomToolButton x:Name="toolButtonLasso" Click="Bt_ToolButtonLasso" ToolTipService.ToolTip="Selection tool">
                         <SymbolIcon Symbol="{x:Bind LassoSelect}"/>
                     </InkToolbarCustomToolButton>
                 </InkToolbar>
 
-                <Image Height="30" Width="30" Source="/Assets/pencil.png" Grid.Column="1" HorizontalAlignment="Right" Tapped="pressure_select"/>
+                <Image Height="30" Width="30" Source="/Assets/pencil.png" Grid.Column="1" HorizontalAlignment="Right" Tapped="Bt_PartPressure"/>
 
                 <MenuBar HorizontalAlignment="Center" Grid.Column="2">
                     <MenuBarItem Title="angle">
-                        <MenuFlyoutItem Text="use click" Click="use_click"/>
-                        <MenuFlyoutItem Text="use stroke" Click="use_stroke"/>
-                        <MenuFlyoutItem Text="auto" Click="use_auto"/>
-                        <MenuFlyoutItem Text="해제" Click="end_use"/>
+                        <MenuFlyoutItem Text="use click" Click="Bt_useClick"/>
+                        <MenuFlyoutItem Text="use stroke" Click="Bt_useStroke"/>
+                        <MenuFlyoutItem Text="auto" Click="Bt_useAuto"/>
+                        <MenuFlyoutItem Text="해제" Click="Bt_InitAngleButton"/>
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:Name="clear" Click="ClearDrawnBoundingRect" Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
+                <Button x:Name="clear" Click="Bt_ClearDrawnBoundingRect" Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
             </Grid>
 
         </StackPanel>
@@ -109,16 +109,16 @@
                         <ColumnDefinition Width="25*"/>
                     </Grid.ColumnDefinitions>
                     <!-- <Button x:Name="open view" Click="showChart" Content="openview" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="Black" Margin="5"/> -->
-                    
-                    <Button x:Name="fA" Content="figure A" Click="fA_select" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f1" Content="figure 1" Click="f1_select" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f2" Content="figure 2" Click="f2_select" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f3" Content="figure 3" Click="f3_select" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f4" Content="figure 4" Click="f4_select" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f5" Content="figure 5" Click="f5_select" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f6" Content="figure 6" Click="f6_select" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f7" Content="figure 7" Click="f7_select" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:Name="f8" Content="figure 8" Click="f8_select" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+
+                    <Button x:Name="fA" Content="figure A" Click="Bt_fA" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f1" Content="figure 1" Click="Bt_f1" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f2" Content="figure 2" Click="Bt_f2" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f3" Content="figure 3" Click="Bt_f3" Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f4" Content="figure 4" Click="Bt_f4" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f5" Content="figure 5" Click="Bt_f5" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f6" Content="figure 6" Click="Bt_f6" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f7" Content="figure 7" Click="Bt_f7" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="f8" Content="figure 8" Click="Bt_f8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <TextBlock x:Name="name" Grid.Column="0" Grid.Row="4" Text="이름" HorizontalAlignment="Center"  Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:Name="age" Grid.Column="2" Grid.Row="4" Text="나이" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:Name="number" Grid.Column="0" Grid.Row="5" Text="번호" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
@@ -133,7 +133,7 @@
                     <Button x:Name="용지회전" Content="용지회전" Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:Name="폐쇄손란" Content="폐쇄손란" Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
 
-                    <Button x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5" Click="Click_Crossing"/>
+                    <Button x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:Name="resultCrossing" Grid.Column="1" Grid.Row="14" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
                     
                     <Button x:Name="곡선곤란" Content="곡선곤란" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>

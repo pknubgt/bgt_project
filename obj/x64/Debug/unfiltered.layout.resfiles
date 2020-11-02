@@ -1,3 +1,4 @@
+WinMetadata\Windows.winmd
 Assets\check.png
 Assets\eraser.png
 Assets\icon_btn_open.png
@@ -57,4 +58,3 @@ App.xbf
 BGTviewer.xr.xml
 MainPage.xbf
 Properties\Default.rd.xml
-WinMetadata\Windows.winmd
