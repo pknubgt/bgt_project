@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
+using Windows.Storage.Pickers.Provider;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Input.Inking;
@@ -24,65 +25,28 @@ namespace BGTviewer
     /// 자체적으로 사용하거나 프레임 내에서 탐색할 수 있는 빈 페이지입니다.
     /// </summary>
     /// 
-    public class Pressure
-    {
-        public Point location { get; set; }
-        public int index { get; set; }
-        public float strength { get; set; }
-    }
-
-    public class Figure
-    {
-        //선택된 도형을 평가할 때 필요한 정보들을 저장할 변수들(앞으로 차차 필요한 변수를 추가할 예정)
-        public string name;
-        public Point figureStart = new Point();
-        public int pointCount = 0;
-        public float pressureAvg = 0.0f;
-        public float pressureCrossingAvg = 0.0f;
-        public float variance = 0.0f;
-        public float standardDeviation = 0.0f;
-        //...
-    }
-
+  
     public sealed partial class MainPage : Page
     {
         private Polyline lasso;
-        private Rect boundingRect;
+        private int angleMethod = 0;
         private bool isBoundRect;
-        //private Polyline line;
+        private bool isPartPressure = false;
+        private Rectangle partRect;
+        private Rect boundingRect;
 
-        private int selectAngleHow = 0;
-
-        private bool pressure_select_mode = false;
-        private Rectangle selectionRect;
-
-        private bool crossing_difficulties = false; //교차곤란 버튼 선택
-
-        //처음에 필요한 도형의 정보를 모두 저장해둘 클래스들
-        Figure[] figure_info = new Figure[9];
-        //버튼이 눌러졌을 때 true가 되도록 => 89번 줄
-        bool[] f_selected = new bool[9];
-
+        Figure[] figure = new Figure[9];
         Symbol LassoSelect = (Symbol)0xEF20;
 
-        /// ////////////////////////////////////////////////////////////////////////////////
-        // 생성자 함수
+        Point partStartPosition;
+        Point partLastPosition;
+
         public MainPage()
         {
-            for (int i = 0; i < 9; i++)
-            {
-                figure_info[i] = new Figure();
-                if (i == 0)
-                    figure_info[i].name = "figureA";
-                else
-                    figure_info[i].name = "figure" + i;
-
-                Debug.WriteLine(f_selected[i]);
-            }
-
+            SetFigureName();
             this.InitializeComponent();
             inkCanvas.InkPresenter.InputDeviceTypes |= CoreInputDeviceTypes.Mouse;
-            toolbar.ActiveTool = toolButtonLasso;   //디폴트 버튼으로 선택
+            toolbar.ActiveTool = toolButtonLasso; 
             initValue();
 
             InkDrawingAttributes drawingAttributes = new InkDrawingAttributes();
@@ -91,103 +55,85 @@ namespace BGTviewer
             drawingAttributes.FitToCurve = true;
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
 
-            // Listen for button click to initiate recognition.
-            //recognize.Click += RecognizeStrokes_Click;
-
         }
 
-        //어떤 도형의 정보를 저장할 것인가? => 버튼을 누르면 해당하는 버튼의 select를 true로 바꿔줘서 선택됨을 확인한다.
-        private void fA_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[0] = true;
-        }
-        private void f1_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[1] = true;
-        }
-        private void f2_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[2] = true;
-        }
-        private void f3_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[3] = true;
-        }
-        private void f4_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[4] = true;
-        }
-        private void f5_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[5] = true;
-        }
-        private void f6_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[6] = true;
-        }
-        private void f7_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[7] = true;
-        }
-        private void f8_select(object sender, RoutedEventArgs e)
-        {
-            f_selected[8] = true;
-        }
-
-
-
-        private void selected_figure()//어떤 도형 버튼이 선택됬는지 확인하고, 필요한 정보를 얻기위한 함수사용
-        {
-            for (int i = 0; i < f_selected.Length; i++)
+        private void SetFigureName()
+        { 
+            for (int i = 0; i < 9; i++)
             {
-                if (f_selected[i] == true && pressure_select_mode != true)//버튼이 선택되었고 부분필압 버튼이 선택되지 않았을 경우
-                {
-                    DrawBoundingRect(figure_info[i]);//해당하는 도형을 감싸는 사각형을 그리고 정보를 얻어온다.
-                    CalcStrokeInfo(figure_info[i]);//전체 필압을 측정하고 저장한다.
-                    instruction.Text = figure_info[i].name + " 전체 저장";
-                    f_selected[i] = false;
-
-
-                    Debug.WriteLine(figure_info[i].pressureAvg);
-
-                    break;
-                }
-                else if (f_selected[i] == true && pressure_select_mode == true)//버튼이 선택되었고 부분필압 버튼이 선택되었을 경우
-                {
-                    CalcStrokeInfo_part(figure_info[i]);//부분필압을 측정하고 저장한다. => 함수안에서도 pressure_select_mode를 체크한다.
-                    instruction.Text = figure_info[i].name + " 부분 선택 저장";
-                    f_selected[i] = false;
-                    break;
-                } else if (i == f_selected.Length - 1 && f_selected[i] == false)//아무 버튼도 선택되지 않았을 경우
-                    instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
+                figure[i] = new Figure();
+                if (i == 0)
+                    figure[i].Name = "figureA";
+                else
+                    figure[i].Name = "figure" + i;
             }
         }
 
-        //angle 메뉴
-        private void use_click(object sender, RoutedEventArgs e)
+        private void Bt_fA(object sender, RoutedEventArgs e)
         {
-            selectAngleHow = 1;
+            figure[0].selected = true;
         }
-        private void use_stroke(object sender, RoutedEventArgs e)
+        private void Bt_f1(object sender, RoutedEventArgs e)
         {
-            selectAngleHow = 2;
+            figure[1].selected = true;
         }
-        private void use_auto(object sender, RoutedEventArgs e)
+        private void Bt_f2(object sender, RoutedEventArgs e)
         {
-            selectAngleHow = 3;
+            figure[2].selected = true;
         }
-        private void end_use(object sender, RoutedEventArgs e)
+        private void Bt_f3(object sender, RoutedEventArgs e)
         {
-            selectAngleHow = 0;
+            figure[3].selected = true;
         }
-        /// ////////////////////////////////////////////////////////////////////////////////
-        // BGT 응답 파일(GIF)을 불러오는 함수
-        private void Image_Tapped_Load(object sender, TappedRoutedEventArgs e)
+        private void Bt_f4(object sender, RoutedEventArgs e)
+        {
+            figure[4].selected = true;
+        }
+        private void Bt_f5(object sender, RoutedEventArgs e)
+        {
+            figure[5].selected = true;
+        }
+        private void Bt_f6(object sender, RoutedEventArgs e)
+        {
+            figure[6].selected = true;
+        }
+        private void Bt_f7(object sender, RoutedEventArgs e)
+        {
+            figure[7].selected = true;
+        }
+        private void Bt_f8(object sender, RoutedEventArgs e)
+        {
+            figure[8].selected = true;
+        }
+
+        //angle 메뉴 
+        private void Bt_useClick(object sender, RoutedEventArgs e)
+        {
+            angleMethod = 1;
+        }
+        private void Bt_useStroke(object sender, RoutedEventArgs e)
+        {
+            angleMethod = 2;
+        }
+        private void Bt_useAuto(object sender, RoutedEventArgs e)
+        {
+            angleMethod = 3;
+        }
+        private void Bt_InitAngleButton(object sender, RoutedEventArgs e)
+        {
+            angleMethod = 0;
+        }
+        private void Bt_PartPressure(object sender, TappedRoutedEventArgs e)
+        {
+            isPartPressure = true;
+        }
+
+        private void Bt_ImageTappedLoad(object sender, TappedRoutedEventArgs e)
         {
             Load();
         }
 
-        private async void Load()//파일 탐색기를 사용할 수 있게 하는 함수
+        private async void Load()
         {
             var picker = new Windows.Storage.Pickers.FileOpenPicker();
             picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.Thumbnail;
@@ -196,33 +142,6 @@ namespace BGTviewer
             picker.FileTypeFilter.Add(".isf");
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
-
-            /*
-            if (file == null)
-            {
-                return;
-            }
-
-            SoftwareBitmap softwareBitmap;
-
-            using (IRandomAccessStream stream = await file.OpenAsync(FileAccessMode.Read))
-            {
-                BitmapDecoder decoder = await BitmapDecoder.CreateAsync(stream);
-
-                softwareBitmap = await decoder.GetSoftwareBitmapAsync();
-            }
-
-            if (softwareBitmap.BitmapPixelFormat != BitmapPixelFormat.Bgra8 ||
-             softwareBitmap.BitmapAlphaMode == BitmapAlphaMode.Straight)
-            {
-                softwareBitmap = SoftwareBitmap.Convert(softwareBitmap, BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied);
-            }
-
-            var source = new SoftwareBitmapSource();
-            await source.SetBitmapAsync(softwareBitmap);
-
-            img.Source = source;
-            */
 
 
             if (file != null)
@@ -240,23 +159,13 @@ namespace BGTviewer
             }
         }
 
+        ///클릭한 좌표를 얻어와 각도 측정 =>angle클래스로 옮김
 
-        /// //////////////////////////////////////////////////////////////////////////////////////////////
-        /// Lasso Tool을 통해 마우스로 스트로크를 선택할 수 있도록 해 주는 관련 함수들
-        /// 
-        ///클릭한 좌표를 얻어와 각도 측정
-        ///
-        Point[] points = new Point[3];
-        int pointsnum = 0;
-
-        Point startposition;
-        Point lastposition;
-
-        private void UnprocessedInput_PointerPressed(InkUnprocessedInput sender, PointerEventArgs args)//마우스를 클릭했을 때
+        private void UnprocessedInput_PointerPressed(InkUnprocessedInput sender, PointerEventArgs args)
         {
-            if (pressure_select_mode == true)//부분 필압을 측정하는 버튼이 선택됬을 경우
+            if (isPartPressure == true)
             {
-                startposition = args.CurrentPoint.Position;
+                partStartPosition = args.CurrentPoint.Position;
             }
             else //도형을 감싸는 영역을 선택할 경우
             {
@@ -264,7 +173,7 @@ namespace BGTviewer
                 {
                     Stroke = new SolidColorBrush(Windows.UI.Colors.Blue),
                     StrokeThickness = 1,
-                    StrokeDashArray = new DoubleCollection() { 5, 2 }, //도형의 윤곽선을 그리는 데 사용되는 대시 및 간격 패턴
+                    StrokeDashArray = new DoubleCollection() { 5, 2 }, 
                 };
 
                 lasso.Points.Add(args.CurrentPoint.RawPosition);
@@ -273,62 +182,63 @@ namespace BGTviewer
                 //inkCanvas.Children.Add(lasso);
                 isBoundRect = true;
 
-                if (selectAngleHow == 1)
+                /*
+                if (angleMethod == 1)
                 {
                     //클릭한 지점의 좌표를 받아 직선그려보기
-                    points[pointsnum].X = args.CurrentPoint.Position.X;
-                    points[pointsnum++].Y = args.CurrentPoint.Position.Y;
+                    anglePoints[pointsnum].X = args.CurrentPoint.Position.X;
+                    anglePoints[pointsnum++].Y = args.CurrentPoint.Position.Y;
 
                     if (pointsnum == 2)//좌표를 두번째 까지 얻어왔을 때, 두개의 점을 이어서 선을 그린다.
                     {
-                        drawLine(points[0], points[1]);
+                        drawLine(anglePoints[0], anglePoints[1]);
                     }
                     if (pointsnum == 3)//좌표를 세번째 까지 얻어왔을 때 두번째 선을 그리고, 두 선분이 이루는 각도를 계산한다.
                     {
-                        drawLine(points[0], points[2]);
-                        getAngle(points[1], points[0], points[2]);
+                        drawLine(anglePoints[0], anglePoints[2]);
+                        getAngle(anglePoints[1], anglePoints[0], anglePoints[2]);
 
                         pointsnum = 0;
                     }
-                }
+                }*/
             }
         }
 
-        private void UnprocessedInput_PointerMoved(InkUnprocessedInput sender, PointerEventArgs args)//마우스를 움직일 경우
+        private void UnprocessedInput_PointerMoved(InkUnprocessedInput sender, PointerEventArgs args)
         {
-            if (pressure_select_mode == true)
+            if (isPartPressure == true)
             {
-                selectionCanvas.Children.Remove(selectionRect);
-                lastposition = args.CurrentPoint.Position;
-
+                selectionCanvas.Children.Remove(partRect);
+                partLastPosition = args.CurrentPoint.Position;
+                
                 try
                 {
-                    selectionRect = new Rectangle()
+                    partRect = new Rectangle()
                     {
                         Stroke = new SolidColorBrush(Windows.UI.Colors.DarkGray),
                         StrokeThickness = 1,
                         StrokeDashArray = new DoubleCollection() { 5, 2 },
-                        Width = lastposition.X - startposition.X,
-                        Height = lastposition.Y - startposition.Y
+                        Width = partLastPosition.X - partStartPosition.X,
+                        Height = partLastPosition.Y - partStartPosition.Y
                     };
                 }
                 catch
                 {
-                    lastposition = startposition;
+                    partLastPosition = partStartPosition;
 
-                    selectionRect = new Rectangle()
+                    partRect = new Rectangle()
                     {
                         Stroke = new SolidColorBrush(Windows.UI.Colors.DarkGray),
                         StrokeThickness = 1,
                         StrokeDashArray = new DoubleCollection() { 5, 2 },
-                        Width = lastposition.X - startposition.X,
-                        Height = lastposition.Y - startposition.Y
+                        Width = partLastPosition.X - partStartPosition.X,
+                        Height = partLastPosition.Y - partStartPosition.Y
                     };
                 }
-                Canvas.SetLeft(selectionRect, startposition.X);
-                Canvas.SetTop(selectionRect, startposition.Y);
+                Canvas.SetLeft(partRect, partStartPosition.X);
+                Canvas.SetTop(partRect, partStartPosition.Y);
 
-                selectionCanvas.Children.Add(selectionRect);
+                selectionCanvas.Children.Add(partRect);
             }
             else
             {
@@ -339,35 +249,36 @@ namespace BGTviewer
             }
         }
 
-        private void UnprocessedInput_PointerReleased(InkUnprocessedInput sender, PointerEventArgs args)//마우스의 누르고 있던 버튼을 땔 경우
+        private void UnprocessedInput_PointerReleased(InkUnprocessedInput sender, PointerEventArgs args)
         {
 
-            if (pressure_select_mode == true)//도형의 부분 필압을 얻어오는 버튼을 눌렀을 경우
+            if (isPartPressure == true)
             {
-                selected_figure();
-                pressure_select_mode = false;
+                SelectedFigure();
+                isPartPressure = false;
             }
             else
             {
-                lasso.Points.Add(args.CurrentPoint.RawPosition);//-------------------------------------------------------여기?
-
-                boundingRect = inkCanvas.InkPresenter.StrokeContainer.SelectWithPolyLine(lasso.Points);//----------------여기?
+                lasso.Points.Add(args.CurrentPoint.RawPosition);
+                boundingRect = inkCanvas.InkPresenter.StrokeContainer.SelectWithPolyLine(lasso.Points);
 
                 isBoundRect = false;
 
 
-                selected_figure();
+                SelectedFigure();
 
+                /*
                 //각도를 측정하는 방식을 선택
-                if (selectAngleHow == 2)
+                if (angleMethod == 2)
                     getPoints();
-                else if (selectAngleHow == 3)
+                else if (angleMethod == 3)
                     autoAngle();
+                */
             }
 
         }
 
-
+        /*
         /// <summary>
         /// 각도를 측정하는 방식
         /// </summary>
@@ -481,12 +392,8 @@ namespace BGTviewer
 
             //angle.Text = "angle : " + degree + " degree";
         }
+        */
 
-        //////////////////////////////////////////////////////////////////////////
-        /// 인식 복붙
-        //////////////////////////////////////////////////////////////////////////
-
-        //도형을 감싸는 사각형을 그리는 함수
         private void DrawBoundingRect(Figure f)
         {
 
@@ -510,16 +417,10 @@ namespace BGTviewer
             Canvas.SetTop(rectangle, boundingRect.Y);
 
             selectionCanvas.Children.Add(rectangle);
-
-            f.figureStart = new Point(boundingRect.X, boundingRect.Y);
         }
 
-
-
-        private void ToolButton_Lasso(object sender, RoutedEventArgs e)
+        private void Bt_ToolButtonLasso(object sender, RoutedEventArgs e)
         {
-            // By default, pen barrel button or right mouse button is processed for inking
-            // Set the configuration to instead allow processing these input on the UI thread
             inkCanvas.InkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed;
 
             inkCanvas.InkPresenter.UnprocessedInput.PointerPressed += UnprocessedInput_PointerPressed;
@@ -527,7 +428,7 @@ namespace BGTviewer
             inkCanvas.InkPresenter.UnprocessedInput.PointerReleased += UnprocessedInput_PointerReleased;
         }
 
-        private void ClearDrawnBoundingRect(object sender, RoutedEventArgs e)
+        private void Bt_ClearDrawnBoundingRect(object sender, RoutedEventArgs e)
         {
             if (selectionCanvas.Children.Count > 0)
             {
@@ -537,21 +438,14 @@ namespace BGTviewer
             }
         }
 
-        /// //////////////////////////////////////////////////////////////
-        //스트로크 정보를 계산하고 그래프를 그림
-        //////////////////////////////////////////////////////////////////
-        List<Pressure> pressurelist1;//전체 그래프의 값
-        List<Pressure> pressurelist2;//선택된 그래프의 값
+        List<PressureGraph> TotalPressureList;
+        List<PressureGraph> PartPressureList;
 
-        public void CalcStrokeInfo_part(Figure f)
+        public void PartPressureGraph(Figure f)
         {
-            var pressure = 0.0f;
-            var selected_pressure = 0.0f;
-            var nTotalPoints = 0;
             var strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
-            float varTemp = 0.0f;
 
-            pressurelist2 = new List<Pressure>();
+            PartPressureList = new List<PressureGraph>();
 
             foreach (var stroke in strokes)
             {
@@ -560,48 +454,30 @@ namespace BGTviewer
                 var points = stroke.GetInkPoints();
                 foreach (var pt in points)
                 {
-                    if (startposition.X <= pt.Position.X && startposition.Y <= pt.Position.Y &&
-                        lastposition.X >= pt.Position.X && lastposition.Y >= pt.Position.Y)
+                    if (partStartPosition.X <= pt.Position.X && partStartPosition.Y <= pt.Position.Y &&
+                        partLastPosition.X >= pt.Position.X && partLastPosition.Y >= pt.Position.Y)
                     {
-                        selected_pressure += pt.Pressure;
-                        varTemp += (pt.Pressure - pressure) * (pt.Pressure - pressure);//편차의 제곱의 합
-                        nTotalPoints++;
-
-                        if (pressurelist1.Exists(x => x.location == pt.Position) == true //전체 그래프에서 선택된 영역
-                            && pressurelist2.Exists(x => x.location == pt.Position) != true) //선택된 영역에서 중복되지 않는 값
+                        if (TotalPressureList.Exists(x => x.location == pt.Position) == true 
+                            && PartPressureList.Exists(x => x.location == pt.Position) != true) 
                         {
-                            int idx = pressurelist1.FindIndex(v => v.location == pt.Position);
-                            pressurelist2.Add(pressurelist1[idx]);
+                            int idx = TotalPressureList.FindIndex(v => v.location == pt.Position);
+                            PartPressureList.Add(TotalPressureList[idx]);
                         }
                     }
                 }
             }
-            selected_pressure /= nTotalPoints;//선택영역의 평균
-            varTemp /= nTotalPoints;//분산
-            f.variance = varTemp;
-            f.standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
-
-            text2.Text = "교차점영역 필압의 평균 : " + selected_pressure.ToString();
-
+           
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
-            (LineChart.Series[1] as LineSeries).ItemsSource = pressurelist2;
+            (LineChart.Series[1] as LineSeries).ItemsSource = PartPressureList;
 
-            if (figure_info[6].standardDeviation != 0 && figure_info[7].standardDeviation != 0) //도형6과 도형7의 표준편차 값이 구해졌을 경우
-            {
-                checkCrossing(figure_info[6], figure_info[7]);//점수를 측정한다.
-            }
         }
-        public void CalcStrokeInfo(Figure f)
-        {
 
-            var pressure = 0.0f;
-            var selected_pressure = 0.0f;
-            var nTotalPoints = 0;
+        public void TotalPressureGraph(Figure f)
+        {
             var strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
             int i = 0;
-            float varTemp = 0.0f;
 
-                pressurelist1 = new List<Pressure>();
+                TotalPressureList = new List<PressureGraph>();
 
                 float sum = 0;
 
@@ -613,92 +489,49 @@ namespace BGTviewer
 
                     foreach (var pt in points)
                     {
-                        pressure += pt.Pressure;
                         sum += pt.Pressure;
                         i++;
                         if (i % 10 == 0)
-                            pressurelist1.Add(new Pressure() { location = pt.Position, index = i, strength = sum / 10.0F });
+                            TotalPressureList.Add(new PressureGraph() { location = pt.Position, index = i, strength = sum / 10.0F });
                         sum = 0;
                     }
-                    nTotalPoints += points.Count;
                 }
-                pressure /= nTotalPoints;
-                f.pressureAvg = pressure;
-
-                text1.Text = "전체 필압의 평균 : " + pressure.ToString();
 
                 (LineChart.Series[0] as LineSeries).ItemsSource = null;
                 (LineChart.Series[1] as LineSeries).ItemsSource = null;
-                (LineChart.Series[0] as LineSeries).ItemsSource = pressurelist1;
+                (LineChart.Series[0] as LineSeries).ItemsSource = TotalPressureList;
         }
 
-        public void checkCrossing(Figure f) //figure6과 figure7을 합쳐서 점수내야함                                                   --- 일단 테스트 용으로 간단하게 만듬
-        {                                   //일단 figure6으로만 점수를 내봄
-            //Debug.WriteLine("전체 평균 : " + f.pressureAvg.ToString());
-            //Debug.WriteLine("분산 : " + f.variance.ToString());
-            //Debug.WriteLine("표준편차 : " + f.standardDeviation.ToString());
-
-
-            float m = f.pressureAvg;
-            float s = f.standardDeviation;
-            float compare = f.pressureCrossingAvg;
-
-            if (compare > m + s) //심하다
-                resultCrossing.Text = "10.0";
-            else if (compare <= m + s && compare > m + (s / 2))//보통이다
-                resultCrossing.Text = "7.0";
-            else if (compare <= m + (s / 2) && compare > m + (s / 4))//경미하다
-                resultCrossing.Text = "4.0";
-            else //없다                                                                                                               ------- 완전히 같을 순 없을텐데?
-                resultCrossing.Text = "1.0";
-
-            crossing_difficulties = false;
-        }
-
-        public void checkCrossing(Figure f6, Figure f7)
+        private void SelectedFigure()
         {
-            float m = 0;
-            float s = 0;
-            float compare = 0;
-            int[] result = new int[2];
-
-
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < figure.Length; i++)
             {
-                if (i == 0)
+                if (figure[i].selected == true && isPartPressure != true)
                 {
-                    m = f6.pressureAvg;
-                    s = f6.standardDeviation;
-                    compare = f6.pressureCrossingAvg;
-                }
-                else if (i == 1)
-                {
-                    m = f7.pressureAvg;
-                    s = f7.standardDeviation;
-                    compare = f7.pressureCrossingAvg;
-                }
+                    DrawBoundingRect(figure[i]);
+                    TotalPressureGraph(figure[i]);
+                    figure[i].BoundingRect = boundingRect;
+                    figure[i].CalPoints(inkCanvas.InkPresenter.StrokeContainer.GetStrokes());
+                    instruction.Text = figure[i].Name + " 전체 저장";
+                    figure[i].selected = false;
+                    Debug.WriteLine(figure[i].Name + " " + figure[i].BoundingRect.X + " " + figure[i].BoundingRect.Y);
+                    Debug.WriteLine(figure[i].Points[1].X + " " + figure[i].Points[1].Y);
 
-                if (compare > m + s) //심하다
-                    result[i] = 10;
-                else if (compare <= m + s && compare > m + (s / 2))//보통이다
-                    result[i] = 7;
-                else if (compare <= m + (s / 2) && compare > m + (s / 4))//경미하다
-                    result[i] = 4;
-                else //없다
-                    result[i] = 1;
+                    break;
+                }
+                else if (figure[i].selected == true && isPartPressure == true)
+                {
+                    PartPressureGraph(figure[i]);
+                    instruction.Text = figure[i].Name + " 부분 선택 저장";
+                    figure[i].selected = false;
+
+                    break;
+                }
+                else if (figure[i].selected == false) //아무 버튼도 선택되지 않았을 경우  (i == figure.Length - 1 &&)
+                {
+                    instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
+                }
             }
-
-            /*
-            if (result[0] == result[1])
-                resultCrossing.Text = result[0].ToString();
-            else if()
-
-            */
-        }
-
-        private void pressure_select(object sender, TappedRoutedEventArgs e)
-        {
-            pressure_select_mode = true;
         }
 
         private void initValue()
@@ -707,10 +540,5 @@ namespace BGTviewer
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
         }
 
-        private void Click_Crossing(object sender, RoutedEventArgs e)
-        {
-            crossing_difficulties = true;
-        }
-        
     }
 }

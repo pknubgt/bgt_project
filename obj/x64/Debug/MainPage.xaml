@@ -27,11 +27,11 @@
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image x:ConnectionId='49' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                            Grid.Column="0" HorizontalAlignment="Left"/>
+                <Image x:ConnectionId='49' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                             Grid.Column="0" HorizontalAlignment="Left"/>
                 <Image Height="30" Width="30" Source="/Assets/check.png" Grid.Column="3" HorizontalAlignment="Right"/>
 
                 <InkToolbar x:ConnectionId='50' x:Name="toolbar"                                      Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
-                    <InkToolbarCustomToolButton x:ConnectionId='57' x:Name="toolButtonLasso"                          ToolTipService.ToolTip="Selection tool">
+                    <InkToolbarCustomToolButton x:ConnectionId='57' x:Name="toolButtonLasso"                            ToolTipService.ToolTip="Selection tool">
                         <SymbolIcon x:ConnectionId='58'                              />
                     </InkToolbarCustomToolButton>
                 </InkToolbar>
@@ -40,13 +40,13 @@
 
                 <MenuBar HorizontalAlignment="Center" Grid.Column="2">
                     <MenuBarItem Title="angle">
-                        <MenuFlyoutItem x:ConnectionId='53' Text="use click"                  />
-                        <MenuFlyoutItem x:ConnectionId='54' Text="use stroke"                   />
-                        <MenuFlyoutItem x:ConnectionId='55' Text="auto"                 />
-                        <MenuFlyoutItem x:ConnectionId='56' Text="해제"                />
+                        <MenuFlyoutItem x:ConnectionId='53' Text="use click"                    />
+                        <MenuFlyoutItem x:ConnectionId='54' Text="use stroke"                     />
+                        <MenuFlyoutItem x:ConnectionId='55' Text="auto"                   />
+                        <MenuFlyoutItem x:ConnectionId='56' Text="해제"                           />
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:ConnectionId='52' x:Name="clear"                                Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
+                <Button x:ConnectionId='52' x:Name="clear"                                   Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
             </Grid>
 
         </StackPanel>
@@ -109,16 +109,16 @@
                         <ColumnDefinition Width="25*"/>
                     </Grid.ColumnDefinitions>
                     <!-- <Button x:Name="open view" Click="showChart" Content="openview" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Background="Black" Margin="5"/> -->
-                    
-                    <Button x:ConnectionId='6' x:Name="fA" Content="figure A"                   Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='7' x:Name="f1" Content="figure 1"                   Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='8' x:Name="f2" Content="figure 2"                   Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='9' x:Name="f3" Content="figure 3"                   Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='10' x:Name="f4" Content="figure 4"                   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='11' x:Name="f5" Content="figure 5"                   Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='12' x:Name="f6" Content="figure 6"                   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='13' x:Name="f7" Content="figure 7"                   Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
-                    <Button x:ConnectionId='14' x:Name="f8" Content="figure 8"                   Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+
+                    <Button x:ConnectionId='6' x:Name="fA" Content="figure A"               Grid.Row="0" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='7' x:Name="f1" Content="figure 1"               Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='8' x:Name="f2" Content="figure 2"               Grid.Row="0" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='9' x:Name="f3" Content="figure 3"               Grid.Row="0" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='10' x:Name="f4" Content="figure 4"               Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='11' x:Name="f5" Content="figure 5"               Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='12' x:Name="f6" Content="figure 6"               Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='13' x:Name="f7" Content="figure 7"               Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:ConnectionId='14' x:Name="f8" Content="figure 8"               Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <TextBlock x:ConnectionId='15' x:Name="name" Grid.Column="0" Grid.Row="4" Text="이름" HorizontalAlignment="Center"  Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:ConnectionId='16' x:Name="age" Grid.Column="2" Grid.Row="4" Text="나이" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:ConnectionId='17' x:Name="number" Grid.Column="0" Grid.Row="5" Text="번호" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
@@ -133,7 +133,7 @@
                     <Button x:ConnectionId='26' x:Name="용지회전" Content="용지회전" Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:ConnectionId='27' x:Name="폐쇄손란" Content="폐쇄손란" Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
 
-                    <Button x:ConnectionId='28' x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"                       />
+                    <Button x:ConnectionId='28' x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:ConnectionId='29' x:Name="resultCrossing" Grid.Column="1" Grid.Row="14" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
                     
                     <Button x:ConnectionId='30' x:Name="곡선곤란" Content="곡선곤란" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
