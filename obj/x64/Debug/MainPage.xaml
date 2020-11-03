@@ -27,26 +27,26 @@
                     <ColumnDefinition Width="25*"/>
                 </Grid.ColumnDefinitions>
 
-                <Image x:ConnectionId='49' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                             Grid.Column="0" HorizontalAlignment="Left"/>
+                <Image x:ConnectionId='51' Height="30" Width="30" Source="/Assets/icon_btn_open.png"                             Grid.Column="0" HorizontalAlignment="Left"/>
                 <Image Height="30" Width="30" Source="/Assets/check.png" Grid.Column="3" HorizontalAlignment="Right"/>
 
-                <InkToolbar x:ConnectionId='50' x:Name="toolbar"                                      Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
-                    <InkToolbarCustomToolButton x:ConnectionId='57' x:Name="toolButtonLasso"                            ToolTipService.ToolTip="Selection tool">
-                        <SymbolIcon x:ConnectionId='58'                              />
+                <InkToolbar x:ConnectionId='52' x:Name="toolbar"                                      Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
+                    <InkToolbarCustomToolButton x:ConnectionId='59' x:Name="toolButtonLasso"                            ToolTipService.ToolTip="Selection tool">
+                        <SymbolIcon x:ConnectionId='60'                              />
                     </InkToolbarCustomToolButton>
                 </InkToolbar>
 
-                <Image x:ConnectionId='51' Height="30" Width="30" Source="/Assets/pencil.png" Grid.Column="1" HorizontalAlignment="Right"                         />
+                <Image x:ConnectionId='53' Height="30" Width="30" Source="/Assets/pencil.png" Grid.Column="1" HorizontalAlignment="Right"                         />
 
                 <MenuBar HorizontalAlignment="Center" Grid.Column="2">
                     <MenuBarItem Title="angle">
-                        <MenuFlyoutItem x:ConnectionId='53' Text="use click"                    />
-                        <MenuFlyoutItem x:ConnectionId='54' Text="use stroke"                     />
-                        <MenuFlyoutItem x:ConnectionId='55' Text="auto"                   />
-                        <MenuFlyoutItem x:ConnectionId='56' Text="해제"                           />
+                        <MenuFlyoutItem x:ConnectionId='55' Text="use click"                    />
+                        <MenuFlyoutItem x:ConnectionId='56' Text="use stroke"                     />
+                        <MenuFlyoutItem x:ConnectionId='57' Text="auto"                   />
+                        <MenuFlyoutItem x:ConnectionId='58' Text="해제"                           />
                     </MenuBarItem>
                 </MenuBar>
-                <Button x:ConnectionId='52' x:Name="clear"                                   Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
+                <Button x:ConnectionId='54' x:Name="clear"                                   Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
             </Grid>
 
         </StackPanel>
@@ -74,7 +74,7 @@
             <TextBlock x:ConnectionId='3' Grid.Column="0" Grid.Row="0" x:Name="instruction" Text="점수를 측정하기 위해 순서에 따른 지시사항을 표시함" FontSize="25" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
             <Canvas x:ConnectionId='4' x:Name="selectionCanvas" Grid.Column="0" Grid.Row="1">
-                <Image x:ConnectionId='48' x:Name="img" Stretch="UniformToFill" />
+                <Image x:ConnectionId='50' x:Name="img" Stretch="UniformToFill" />
             </Canvas>
             <InkCanvas x:ConnectionId='5' x:Name="inkCanvas" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Stretch" />
 
@@ -129,35 +129,39 @@
                     <Button x:ConnectionId='22' x:Name="배열순서" Content="배열순서" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:ConnectionId='23' x:Name="도형A의위치" Content="도형A의 위치" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="12" Margin="5"/>
                     <Button x:ConnectionId='24' x:Name="공간사용" Content="공간사용" Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='25' x:Name="중첩" Content="중첩" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='26' x:Name="용지회전" Content="용지회전" Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='27' x:Name="폐쇄손란" Content="폐쇄손란" Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-
-                    <Button x:ConnectionId='28' x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <TextBlock x:ConnectionId='29' x:Name="resultCrossing" Grid.Column="1" Grid.Row="14" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <Button x:ConnectionId='25' x:Name="중첩" Content="중첩" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"              />
+                    <TextBlock x:ConnectionId='26' x:Name="RR" Grid.Column="1" Grid.Row="11" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
                     
-                    <Button x:ConnectionId='30' x:Name="곡선곤란" Content="곡선곤란" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='31' x:Name="각의변화" Content="각의변화" Grid.Column="0" Grid.Row="16" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='32' x:Name="지각적회전" Content="지각적회전" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='33' x:Name="퇴영" Content="퇴영" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='34' x:Name="단순화" Content="단순화" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='35' x:Name="단편화" Content="단편화" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='36' x:Name="중복곤란" Content="중복곤란" Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='37' x:Name="정교화" Content="정교화" Grid.Column="2" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='38' x:Name="고집화" Content="고집화" Grid.Column="2" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <Button x:ConnectionId='39' x:Name="재묘사" Content="재묘사" Grid.Column="2" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
-                    <TextBlock x:ConnectionId='40' x:Name="평균" Grid.Column="2" Grid.Row="16" Text="평균" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
-                    <TextBlock x:ConnectionId='41' x:Name="결과" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="17" Text="결과" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
-                    <TextBlock x:ConnectionId='42' x:Name="소속집단" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="17" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <Button x:ConnectionId='27' x:Name="용지회전" Content="용지회전" Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='28' x:Name="폐쇄손란" Content="폐쇄손란" Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
 
-                    <Charting:Chart x:ConnectionId='43' x:Name="LineChart" Margin="5" Grid.ColumnSpan="4" Grid.Row="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="SkyBlue">
-                        <Charting:LineSeries x:ConnectionId='46'
+                    <Button x:ConnectionId='29' x:Name="교차곤란" Content="교차곤란" Grid.Column="0" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='30' x:Name="resultCrossing" Grid.Column="1" Grid.Row="14" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    
+                    <Button x:ConnectionId='31' x:Name="곡선곤란" Content="곡선곤란" Grid.Column="0" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='32' x:Name="각의변화" Content="각의변화" Grid.Column="0" Grid.Row="16" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='33' x:Name="지각적회전" Content="지각적회전" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='34' x:Name="퇴영" Content="퇴영" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='35' x:Name="단순화" Content="단순화" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='36' x:Name="단편화" Content="단편화" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='37' x:Name="중복곤란" Content="중복곤란" Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"              />
+                    <TextBlock x:ConnectionId='38' x:Name="OD" Grid.Column="3" Grid.Row="12" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
+                    
+                    <Button x:ConnectionId='39' x:Name="정교화" Content="정교화" Grid.Column="2" Grid.Row="13" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='40' x:Name="고집화" Content="고집화" Grid.Column="2" Grid.Row="14" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <Button x:ConnectionId='41' x:Name="재묘사" Content="재묘사" Grid.Column="2" Grid.Row="15" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:ConnectionId='42' x:Name="평균" Grid.Column="2" Grid.Row="16" Text="평균" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='43' x:Name="결과" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="17" Text="결과" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='44' x:Name="소속집단" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="17" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+
+                    <Charting:Chart x:ConnectionId='45' x:Name="LineChart" Margin="5" Grid.ColumnSpan="4" Grid.Row="18" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="SkyBlue">
+                        <Charting:LineSeries x:ConnectionId='48'
                            x:Name="Pressure"
                            DependentValuePath = "strength"
                             IndependentValuePath = "index"
                             IsTapEnabled = "True"
                             Title = "Pressure"/>
-                        <Charting:LineSeries x:ConnectionId='47'
+                        <Charting:LineSeries x:ConnectionId='49'
                             x:Name="Selected"
                            DependentValuePath = "strength"
                             IndependentValuePath = "index"
@@ -165,8 +169,8 @@
                             Title = "Selected"/>
                     </Charting:Chart>
 
-                    <TextBlock x:ConnectionId='44' x:Name="text1" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="19" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
-                    <TextBlock x:ConnectionId='45' x:Name="text2" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="20" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='46' x:Name="text1" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="19" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBlock x:ConnectionId='47' x:Name="text2" Grid.ColumnSpan="2" Grid.Column="2" Grid.Row="20" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
                     <!--  
   <Charting:LineSeries
                            x:Name="Pressure"
