@@ -119,6 +119,8 @@
                     <Button x:Name="f6" Content="figure 6" Click="Bt_f6" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <Button x:Name="f7" Content="figure 7" Click="Bt_f7" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <Button x:Name="f8" Content="figure 8" Click="Bt_f8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="scale_up" Content="Scale_UP" Click="Bt_UP" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink" Foreground="Black" Margin="5"/>
+                    <Button x:Name="scale_down" Content="Scale_DOWN" Click="Bt_DOWN" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink" Foreground="Black" Margin="5"/>
                     <TextBlock x:Name="name" Grid.Column="0" Grid.Row="4" Text="이름" HorizontalAlignment="Center"  Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:Name="age" Grid.Column="2" Grid.Row="4" Text="나이" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <TextBlock x:Name="number" Grid.Column="0" Grid.Row="5" Text="번호" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
