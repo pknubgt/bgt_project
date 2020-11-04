@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.Storage.Pickers.Provider;
@@ -83,6 +84,37 @@ namespace BGTviewer
             od.Overlapping_difficulty(figure);
 
             OD.Text = od.PSV.ToString();
+        }
+
+        public void Bt_UP(object sender, RoutedEventArgs e)
+        {
+            float size = 1.2f;
+            Debug.WriteLine("size: " + size);
+            var container = inkCanvas.InkPresenter.StrokeContainer;
+            var strokes = container.GetStrokes();
+            var bounds = container.BoundingRect;
+            var center = new Vector2((float)bounds.Left, (float)bounds.Top);
+            var transform = Matrix3x2.CreateScale(size, size, center);
+
+            foreach (var stroke in strokes)
+            {
+                stroke.PointTransform *= transform;
+            }
+        }
+
+        private void Bt_DOWN(object sender, RoutedEventArgs e)
+        {
+            float size = 0.8f;
+            var container = inkCanvas.InkPresenter.StrokeContainer;
+            var strokes = container.GetStrokes();
+            var bounds = container.BoundingRect;
+            var center = new Vector2((float)bounds.Left, (float)bounds.Top);
+            var transform = Matrix3x2.CreateScale(size, size, center);
+
+            foreach (var stroke in strokes)
+            {
+                stroke.PointTransform *= transform;
+            }
         }
 
         private void Bt_fA(object sender, RoutedEventArgs e)

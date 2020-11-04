@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-11-02T12:39:50.401</Modified>
+      <Modified>2020-11-04T14:22:08.254</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\BGTviewer.exe">
       <PackagePath>entrypoint\BGTviewer.exe</PackagePath>
-      <Modified>2020-11-02T12:39:47.185</Modified>
+      <Modified>2020-11-04T14:22:05.864</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -346,15 +346,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\BGTviewer.xr.xml">
       <PackagePath>BGTviewer.xr.xml</PackagePath>
-      <Modified>2020-11-02T10:12:14.279</Modified>
+      <Modified>2020-11-04T14:18:31.541</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-11-02T12:39:46.620</Modified>
+      <Modified>2020-11-04T14:22:05.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-11-02T12:39:46.620</Modified>
+      <Modified>2020-11-04T14:22:05.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.18362.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -362,11 +362,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-11-02T10:20:51.348</Modified>
+      <Modified>2020-11-04T14:22:07.082</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\Core\BGTviewer.exe">
       <PackagePath>BGTviewer.exe</PackagePath>
-      <Modified>2020-11-02T12:39:50.386</Modified>
+      <Modified>2020-11-04T14:22:08.246</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
