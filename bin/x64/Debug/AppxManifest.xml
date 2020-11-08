@@ -51,6 +51,7 @@
     <build:Item Name="OptimizingToolset" Value="None" />
     <build:Item Name="TargetRuntime" Value="Managed" />
     <build:Item Name="Microsoft.Windows.UI.Xaml.Build.Tasks.dll" Version="10.0.17763.132" />
+    <build:Item Name="SQLite.UWP.2015" Version="3.33.0" />
     <build:Item Name="MakePri.exe" Version="10.0.17763.132 (WinBuild.160101.0800)" />
   </build:Metadata>
 </Package>

@@ -215,7 +215,6 @@ class OverlappingDifficulty
     public bool compare(List<Point> a, List<Point> b)
     {
         Boolean res = false;
-        int sum = 0;
 
         foreach (var a_element in a)
         {

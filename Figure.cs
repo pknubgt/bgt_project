@@ -12,6 +12,7 @@ public class Figure
     private string name;
     private List<Point> points;
     public bool selected;
+    public bool complete;
     //스트로크 수 (보류)
 
     private Rect boundingRect;
@@ -51,7 +52,16 @@ public class Figure
         get { return variance; }
         set { variance = value; }
     }
-
+    public float TotalPressure
+    {
+        get { return totalPressure; }
+        set { totalPressure = value; }
+    }
+    public float PartPressure
+    {
+        get { return partPressure; }
+        set { partPressure = value; }
+    }
     public IReadOnlyList<InkStroke> Strokes
     {
         get { return strokes; }
@@ -82,7 +92,7 @@ public class Figure
         }
     }
 
-    public void CalcTotalPressure(Figure f, IReadOnlyList<InkStroke> strokes)
+    public void CalcTotalPressure(IReadOnlyList<InkStroke> strokes)
     {
         var nTotalPoints = 0;
 
@@ -103,7 +113,7 @@ public class Figure
         //text1.Text = "전체 필압의 평균 : " + pressure.ToString();
     }
 
-    public void CalcPartPressure(Figure f, IReadOnlyList<InkStroke> strokes, Point partStartPosition, Point partLastPosition)
+    public void CalcPartPressure(IReadOnlyList<InkStroke> strokes, Point partStartPosition, Point partLastPosition)
     {
         var nTotalPoints = 0;
         float varTemp = 0.0f;
@@ -127,8 +137,8 @@ public class Figure
         }
         partPressure /= nTotalPoints;//선택영역의 평균
         varTemp /= nTotalPoints;//분산
-        f.variance = varTemp;
-        f.standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
+        variance = varTemp;
+        standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
 
         //text2.Text = "교차점영역 필압의 평균 : " + partPressure.ToString();
     }

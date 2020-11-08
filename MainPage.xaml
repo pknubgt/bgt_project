@@ -119,6 +119,7 @@
                     <Button x:Name="f6" Content="figure 6" Click="Bt_f6" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <Button x:Name="f7" Content="figure 7" Click="Bt_f7" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
                     <Button x:Name="f8" Content="figure 8" Click="Bt_f8" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="LightGray" Foreground="Black" Margin="5"/>
+                    <Button x:Name="save" Content="save info" Click="TestDatabase" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="BlueViolet" Foreground="Black" Margin="5"/>
                     <Button x:Name="scale_up" Content="Scale_UP" Click="Bt_UP" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink" Foreground="Black" Margin="5"/>
                     <Button x:Name="scale_down" Content="Scale_DOWN" Click="Bt_DOWN" Grid.Row="2" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Pink" Foreground="Black" Margin="5"/>
                     <TextBlock x:Name="name" Grid.Column="0" Grid.Row="4" Text="이름" HorizontalAlignment="Center"  Foreground="Black" FontSize="15" Margin="5"/>
@@ -130,7 +131,10 @@
                     <TextBlock x:Name="점수2" Grid.Column="3" Grid.Row="7" Text="점수" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:Name="배열순서" Content="배열순서" Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:Name="도형A의위치" Content="도형A의 위치" Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="12" Margin="5"/>
+                    
                     <Button x:Name="공간사용" Content="공간사용" Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:Name="US" Grid.Column="1" Grid.Row="10" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
+                    
                     <Button x:Name="중첩" Content="중첩" Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5" Click="Bt_RR"/>
                     <TextBlock x:Name="RR" Grid.Column="1" Grid.Row="11" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
                     
@@ -144,8 +148,12 @@
                     <Button x:Name="각의변화" Content="각의변화" Grid.Column="0" Grid.Row="16" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:Name="지각적회전" Content="지각적회전" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
                     <Button x:Name="퇴영" Content="퇴영" Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    
                     <Button x:Name="단순화" Content="단순화" Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    <TextBlock x:Name="SP" Grid.Column="3" Grid.Row="10" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
+                    
                     <Button x:Name="단편화" Content="단편화" Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5"/>
+                    
                     <Button x:Name="중복곤란" Content="중복곤란" Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="5" Click="Bt_OD"/>
                     <TextBlock x:Name="OD" Grid.Column="3" Grid.Row="12" Text="" FontSize="15" Foreground="Black" HorizontalAlignment="Center" Margin="10"/>
                     
