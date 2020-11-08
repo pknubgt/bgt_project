@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>C5E59B88EFD6B6E541485CCB5708757694824297BA980867979E393D3F843B34</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>785D250B7C9325BD45E8AAB695D7892B0AEA93E70D2E94530F2B3AA8FE3E6005</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>99c2343f-8bed-4f8a-9010-d5e79a9c5980_1.0.0.0_x64__4cyg4469rg6fr</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>99c2343f-8bed-4f8a-9010-d5e79a9c5980_4cyg4469rg6fr!App</RegisteredUserModeAppID>
     <RegisteredPackageID>99c2343f-8bed-4f8a-9010-d5e79a9c5980</RegisteredPackageID>
@@ -30,17 +30,33 @@
     <AppXManifest Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-11-05T03:14:15.110</Modified>
+      <Modified>2020-11-08T06:56:04.972</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\BGTviewer.exe">
       <PackagePath>entrypoint\BGTviewer.exe</PackagePath>
-      <Modified>2020-11-05T03:14:11.530</Modified>
+      <Modified>2020-11-08T06:56:03.611</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
       <Modified>2020-02-27T10:17:32.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\sqlite.net-pcl\3.1.1\lib\Windows8\SQLite.Net.Platform.WinRT.dll">
+      <PackagePath>SQLite.Net.Platform.WinRT.dll</PackagePath>
+      <Modified>2015-11-06T08:18:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\sqlite.net.core-pcl\3.1.1\lib\portable-win8+net45+wp8+wpa81+MonoAndroid1+MonoTouch1\SQLite.Net.dll">
+      <PackagePath>SQLite.Net.dll</PackagePath>
+      <Modified>2015-11-06T08:18:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\sqlitepclraw.core\2.0.4\lib\netstandard2.0\SQLitePCLRaw.core.dll">
+      <PackagePath>SQLitePCLRaw.core.dll</PackagePath>
+      <Modified>2020-09-03T08:13:04.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\system.runtime.compilerservices.unsafe\4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
+      <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
+      <Modified>2018-09-18T10:38:10.000</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\winrtxamltoolkit\2.3.0\lib\uap10.0\WinRTXamlToolkit.dll">
       <PackagePath>WinRTXamlToolkit.dll</PackagePath>
@@ -53,6 +69,10 @@
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\bin\10.0.17763.0\XamlCompiler\Microsoft.UI.Xaml.Markup.winmd">
       <PackagePath>Microsoft.UI.Xaml.Markup.winmd</PackagePath>
       <Modified>2018-10-22T16:33:40.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UAP\v0.8.0.0\ExtensionSDKs\SQLite.UWP.2015\3.33.0\Redist\Debug\x64\sqlite3.dll">
+      <PackagePath>sqlite3.dll</PackagePath>
+      <Modified>2020-11-08T03:05:20.480</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\Assets\check.png">
       <PackagePath>Assets\check.png</PackagePath>
@@ -334,11 +354,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-11-05T03:14:10.983</Modified>
+      <Modified>2020-11-08T06:56:03.246</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-11-05T03:14:10.982</Modified>
+      <Modified>2020-11-08T06:56:03.246</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -362,11 +382,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-11-05T03:09:05.597</Modified>
+      <Modified>2020-11-08T05:54:11.184</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\Core\BGTviewer.exe">
       <PackagePath>BGTviewer.exe</PackagePath>
-      <Modified>2020-11-05T03:14:15.091</Modified>
+      <Modified>2020-11-08T06:56:04.964</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
