@@ -11,9 +11,9 @@ namespace BGTviewer
     public class FigureInfo
     {
         
-        [Column("number")]
+        [Column("id")]
         [PrimaryKey, AutoIncrement]
-        public int Number { get; set; }
+        public int ID { get; set; }
         
         [Column("pointsnum")]
         [NotNull]

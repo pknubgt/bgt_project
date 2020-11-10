@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-11-08T06:56:04.972</Modified>
+      <Modified>2020-11-10T12:42:50.384</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\BGTviewer.exe">
       <PackagePath>entrypoint\BGTviewer.exe</PackagePath>
-      <Modified>2020-11-08T06:56:03.611</Modified>
+      <Modified>2020-11-10T12:42:48.492</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -354,11 +354,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-11-08T06:56:03.246</Modified>
+      <Modified>2020-11-10T12:42:47.854</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-11-08T06:56:03.246</Modified>
+      <Modified>2020-11-10T12:42:47.854</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -386,7 +386,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\Core\BGTviewer.exe">
       <PackagePath>BGTviewer.exe</PackagePath>
-      <Modified>2020-11-08T06:56:04.964</Modified>
+      <Modified>2020-11-10T12:42:50.324</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
