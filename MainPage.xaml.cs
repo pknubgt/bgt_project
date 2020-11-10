@@ -58,7 +58,7 @@ namespace BGTviewer
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
         }
         
-        public static void TestDatabase(object sender, RoutedEventArgs e)
+        public void TestDatabase(object sender, RoutedEventArgs e)
         {
             // 데이터베이스 파일은 C:\Users\<사용자>\AppData\Local\Packages\<앱의 식별 ID>\LocalState에 저장될 것입니다.
             //C:\Users\borio\AppData\Local\Packages\99c2343f-8bed-4f8a-9010-d5e79a9c5980_4cyg4469rg6fr\LocalState
@@ -71,29 +71,34 @@ namespace BGTviewer
             using(SQLiteConnection conn = new SQLiteConnection(sqlitePlatform, pathLocal))
             {
                 conn.CreateTable<FigureInfo>();
-                figureinfo = new FigureInfo { Number = id++ };
-                
-                figureinfo = new FigureInfo { PointNum_A = figure[0].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_1 = figure[1].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_2 = figure[2].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_3 = figure[3].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_4 = figure[4].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_5 = figure[5].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_6 = figure[6].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_7 = figure[7].Points.ToArray().Length };
-                figureinfo = new FigureInfo { PointNum_8 = figure[8].Points.ToArray().Length };
 
-                figureinfo = new FigureInfo { TotalPressure_A = figure[0].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_1 = figure[1].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_2 = figure[2].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_3 = figure[3].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_4 = figure[4].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_5 = figure[5].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_6 = figure[6].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_7 = figure[7].TotalPressure };
-                figureinfo = new FigureInfo { TotalPressure_8 = figure[8].TotalPressure };
+                figureinfo = new FigureInfo {
+                    ID = id++,
 
-                figureinfo = new FigureInfo { PartPressure_6 = BGTviewer.MainPage.figure[6].PartPressure };
+                    PointNum_A = figure[0].Points.ToArray().Length,
+                    PointNum_1 = figure[1].Points.ToArray().Length,
+                    PointNum_2 = figure[2].Points.ToArray().Length,
+                    PointNum_3 = figure[3].Points.ToArray().Length,
+                    PointNum_4 = figure[4].Points.ToArray().Length,
+                    PointNum_5 = figure[5].Points.ToArray().Length,
+                    PointNum_6 = figure[6].Points.ToArray().Length,
+                    PointNum_7 = figure[7].Points.ToArray().Length,
+                    PointNum_8 = figure[8].Points.ToArray().Length,
+
+                    TotalPressure_A = figure[0].TotalPressure,
+                    TotalPressure_1 = figure[1].TotalPressure,
+                    TotalPressure_2 = figure[2].TotalPressure,
+                    TotalPressure_3 = figure[3].TotalPressure,
+                    TotalPressure_4 = figure[4].TotalPressure,
+                    TotalPressure_5 = figure[5].TotalPressure,
+                    TotalPressure_6 = figure[6].TotalPressure,
+                    TotalPressure_7 = figure[7].TotalPressure,
+                    TotalPressure_8 = figure[8].TotalPressure,
+
+                    PartPressure_6 = BGTviewer.MainPage.figure[6].PartPressure
+                };
+               
+                Debug.WriteLine(string.Format("figure[0].Points = {0}, figure[0].TotalPressure = {1}", figure[0].Points.ToArray().Length, figure[0].TotalPressure));
 
                 conn.Insert(figureinfo);
             }
