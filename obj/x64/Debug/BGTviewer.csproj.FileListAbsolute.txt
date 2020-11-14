@@ -444,3 +444,8 @@ C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLite.Net.Platform.WinRT.d
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLite.Net.dll
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLitePCLRaw.core.dll
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\BGTProject\bin\x64\Debug\SQLite.Net.Platform.WinRT.dll
+C:\BGTProject\bin\x64\Debug\SQLite.Net.dll
+C:\BGTProject\bin\x64\Debug\SQLitePCLRaw.core.dll
+C:\BGTProject\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\BGTProject\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758228200000000.json
