@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj": {}
+    "C:\\BGTProject\\BGTviewer.csproj": {}
   },
   "projects": {
-    "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj": {
+    "C:\\BGTProject\\BGTviewer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj",
+        "projectUniqueName": "C:\\BGTProject\\BGTviewer.csproj",
         "projectName": "BGTviewer",
-        "projectPath": "D:\\Project\\Project_bgt\\bgt_project\\BGTviewer.csproj",
-        "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "D:\\Project\\Project_bgt\\bgt_project\\obj\\",
+        "projectPath": "C:\\BGTProject\\BGTviewer.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\BGTProject\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,14 @@
             "Microsoft.NETCore.UniversalWindowsPlatform": {
               "target": "Package",
               "version": "[6.2.10, )"
+            },
+            "SQLite.Net-PCL": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "SQLitePCLRaw.core": {
+              "target": "Package",
+              "version": "[2.0.4, )"
             },
             "WinRTXamlToolkit.Controls.DataVisualization.UWP": {
               "target": "Package",

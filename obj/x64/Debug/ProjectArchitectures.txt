@@ -1,1 +1,1 @@
-C:\Users\borio\Documents\BTGviewer-git\BGTviewer.csproj;x64
+C:\BGTProject\BGTviewer.csproj;x64
