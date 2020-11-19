@@ -42,6 +42,8 @@ namespace BGTviewer
         Point partStartPosition;
         Point partLastPosition;
 
+        Rotation rt = new Rotation();
+
         public MainPage()
         {
             SetFigureName();
@@ -177,6 +179,21 @@ namespace BGTviewer
             OD.Text = od.PSV.ToString();
         }
 
+        public void Bt_RT(object sender, RoutedEventArgs e)/////////////////////지각한 회전 rotation
+        {
+            if (rt.Flagrt == false)
+            {
+                instruction.Text = "지각된 회전 점 선택";
+                rt.Flagrt = true;
+            }
+            else
+            {
+                rt.Flagrt = false;
+                rt.rotation();
+                RT.Text = rt.PSV.ToString();
+            }
+        }
+
         public void Bt_UP(object sender, RoutedEventArgs e)
         {
             float size = 1.2f;
@@ -308,7 +325,55 @@ namespace BGTviewer
 
         private void UnprocessedInput_PointerPressed(InkUnprocessedInput sender, PointerEventArgs args)
         {
-            if (isPartPressure == true)
+            if (rt.Flagrt == true) // 지각된 회전 옵션 - 양 끝점 좌표 찍기
+            {
+
+                var dot = new Ellipse()
+                {
+                    Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                    StrokeThickness = 3,
+                    Width = 8,
+                    Height = 8,
+                };
+
+                for (int i = 0; i < 9; i++)
+                {
+                    if (figure[i].selected == true && rt.Flagrt_in == false)
+                    {
+                        rt.Fignum = i;
+
+                        rt.Vertex[0].X = args.CurrentPoint.Position.X;
+                        rt.Vertex[0].Y = args.CurrentPoint.Position.Y;
+
+                        Canvas.SetLeft(dot, rt.Vertex[0].X);
+                        Canvas.SetTop(dot, rt.Vertex[0].Y);
+
+                        selectionCanvas.Children.Remove(dot);
+                        selectionCanvas.Children.Add(dot);
+                        //Debug.WriteLine("x = " + rt.Vertex[0].X + " y= " + rt.Vertex[0].Y);
+
+                        rt.Flagrt_in = true;
+                    }
+                }
+
+                if (rt.Vertex[0].X != args.CurrentPoint.Position.X && rt.Vertex[0].Y != args.CurrentPoint.Position.Y && figure[rt.Fignum].selected == true)
+                {
+                    rt.Vertex[1].X = args.CurrentPoint.Position.X;
+                    rt.Vertex[1].Y = args.CurrentPoint.Position.Y;
+
+                    //Debug.WriteLine("x = " + rt.Vertex[1].X + " y= " + rt.Vertex[1].Y);
+
+                    Canvas.SetLeft(dot, rt.Vertex[1].X);
+                    Canvas.SetTop(dot, rt.Vertex[1].Y);
+
+                    selectionCanvas.Children.Add(dot);
+                    figure[rt.Fignum].selected = false;
+                    rt.Flagrt_in = false;
+                    rt.Calc_RT();
+
+                }
+            }
+            else if (isPartPressure == true)
             {
                 partStartPosition = args.CurrentPoint.Position;
             }
@@ -541,7 +606,7 @@ namespace BGTviewer
         {
             for (int i = 0; i < figure.Length; i++)
             {
-                if (figure[i].selected == true && isPartPressure != true)
+                if (figure[i].selected == true && isPartPressure != true && rt.Flagrt != true)
                 {
                     DrawBoundingRect(figure[i]);
                     TotalPressureGraph(figure[i]);
@@ -557,7 +622,7 @@ namespace BGTviewer
                     figure[i].CalcTotalPressure(figure[i].Strokes);
                     break;
                 }
-                else if (figure[i].selected == true && isPartPressure == true)
+                else if (figure[i].selected == true && isPartPressure == true && rt.Flagrt != true)
                 {
                     PartPressureGraph(figure[i]);
                     figure[i].CalcPartPressure(figure[i].Strokes, partStartPosition, partLastPosition);
@@ -566,7 +631,7 @@ namespace BGTviewer
 
                     break;
                 }
-                else if (figure[i].selected == false) //아무 버튼도 선택되지 않았을 경우  (i == figure.Length - 1 &&)
+                else if (figure[i].selected == false && rt.Flagrt != true) //아무 버튼도 선택되지 않았을 경우  (i == figure.Length - 1 &&)
                 {
                     instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
                 }
