@@ -449,3 +449,8 @@ C:\BGTProject\bin\x64\Debug\SQLite.Net.dll
 C:\BGTProject\bin\x64\Debug\SQLitePCLRaw.core.dll
 C:\BGTProject\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\BGTProject\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758228200000000.json
+D:\Project\Project_bgt\bgt_project\bin\x64\Debug\SQLite.Net.Platform.WinRT.dll
+D:\Project\Project_bgt\bgt_project\bin\x64\Debug\SQLite.Net.dll
+D:\Project\Project_bgt\bgt_project\bin\x64\Debug\SQLitePCLRaw.core.dll
+D:\Project\Project_bgt\bgt_project\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Project\Project_bgt\bgt_project\obj\x64\Debug\.winmd_cache\$Microsoft.UI.Xaml.Markup.winmd_636758228200000000.json
