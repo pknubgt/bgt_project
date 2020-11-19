@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SQLite.Net;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -12,11 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
-using SQLite.Net.Attributes;
-using SQLite.Net.Platform.WinRT;
-using SQLite.Net.Interop;
-using System.IO;
-using SQLite.Net;
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x412에 나와 있습니다.
 
 
@@ -37,6 +35,7 @@ namespace BGTviewer
         private Rectangle partRect;
         private Rect boundingRect;
 
+        public static Rect drawingRect;
         static Figure[] figure = new Figure[9];
         Symbol LassoSelect = (Symbol)0xEF20;
 
@@ -187,11 +186,14 @@ namespace BGTviewer
             var bounds = container.BoundingRect;
             var center = new Vector2((float)bounds.Left, (float)bounds.Top);
             var transform = Matrix3x2.CreateScale(size, size, center);
-
             foreach (var stroke in strokes)
             {
                 stroke.PointTransform *= transform;
             }
+            drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
+
+            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
+            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
 
         private void Bt_DOWN(object sender, RoutedEventArgs e)
@@ -202,12 +204,15 @@ namespace BGTviewer
             var bounds = container.BoundingRect;
             var center = new Vector2((float)bounds.Left, (float)bounds.Top);
             var transform = Matrix3x2.CreateScale(size, size, center);
-
             foreach (var stroke in strokes)
             {
                 stroke.PointTransform *= transform;
             }
 
+            drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
+
+            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
+            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
 
         private void Bt_fA(object sender, RoutedEventArgs e)
@@ -292,7 +297,8 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-                //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); //?
+              
+                //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }
             else
             {
@@ -423,6 +429,31 @@ namespace BGTviewer
             selectionCanvas.Children.Add(rectangle);
         }
 
+        private void DrawRect(Rectangle rectangle,double width, double height)
+        {
+
+            selectionCanvas.Children.Remove(rectangle);
+
+            if (boundingRect.Width <= 0 || boundingRect.Height <= 0)
+            {
+                return;
+            }
+
+            rectangle = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Coral),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = width,
+                Height = height
+            };
+
+            Canvas.SetLeft(rectangle, boundingRect.X);
+            Canvas.SetTop(rectangle, boundingRect.Y);
+
+            selectionCanvas.Children.Add(rectangle);
+        }
+
         private void Bt_ToolButtonLasso(object sender, RoutedEventArgs e)
         {
             inkCanvas.InkPresenter.InputProcessingConfiguration.RightDragAction = InkInputRightDragAction.LeaveUnprocessed;
@@ -515,6 +546,9 @@ namespace BGTviewer
                     DrawBoundingRect(figure[i]);
                     TotalPressureGraph(figure[i]);
                     figure[i].BoundingRect = boundingRect;
+                    figure[i].Start = new Point(boundingRect.Left, boundingRect.Top);
+                    figure[i].Center = new Point((boundingRect.Left + boundingRect.Right) / 2, (boundingRect.Top + boundingRect.Bottom) / 2);
+                    figure[i].End = new Point(boundingRect.Right, boundingRect.Bottom);
                     figure[i].Strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
                     figure[i].CalPoints(figure[i].Strokes);
                     instruction.Text = figure[i].Name + " 전체 저장";

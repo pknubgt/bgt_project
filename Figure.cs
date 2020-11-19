@@ -16,6 +16,9 @@ public class Figure
     //스트로크 수 (보류)
 
     private Rect boundingRect;
+    private Point start;
+    private Point center;
+    private Point end;
     //+시작점 +센터 + 끝점
 
     private float totalPressure;
@@ -68,6 +71,22 @@ public class Figure
         set { strokes = value; }
     }
 
+    public Point Start
+    {
+        get { return start; }
+        set { start = value; }
+    }
+
+    public Point Center
+    {
+        get { return center; }
+        set { center = value; }
+    }
+    public Point End
+    {
+        get { return end; }
+        set { end = value; }
+    }
     public void CalPoints(IReadOnlyList<InkStroke> strokes)
     {
         points = new List<Point>();
