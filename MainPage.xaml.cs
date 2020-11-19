@@ -141,8 +141,8 @@ namespace BGTviewer
             useSpace.UseOfSpace(figure);
             US.Text = useSpace.PSV.ToString();
 
-            simple.simplification(figure[6]);
-            SP.Text = figure[6].is_simplification.ToString();
+            simple.simplification(figure);
+            SP.Text = simple.PSV.ToString();
 
             reiteration.reiteration(figure);
             RR.Text = reiteration.PSV.ToString();
@@ -462,7 +462,6 @@ namespace BGTviewer
            
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
             (LineChart.Series[1] as LineSeries).ItemsSource = PartPressureList;
-
         }
 
         public void TotalPressureGraph(Figure f)
@@ -493,6 +492,8 @@ namespace BGTviewer
                 (LineChart.Series[0] as LineSeries).ItemsSource = null;
                 (LineChart.Series[1] as LineSeries).ItemsSource = null;
                 (LineChart.Series[0] as LineSeries).ItemsSource = TotalPressureList;
+
+            
         }
 
         private void SelectedFigure()
@@ -510,6 +511,7 @@ namespace BGTviewer
                     figure[i].selected = false;
                     figure[i].complete = true;
                     figure[i].CalcTotalPressure(figure[i].Strokes);
+
                     break;
                 }
                 else if (figure[i].selected == true && isPartPressure == true)
@@ -525,9 +527,11 @@ namespace BGTviewer
                 {
                     instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
                 }
+                
             }
+            
 
-            if(is_Done()==true)
+            if (is_Done()==true)
                 GetResult();
         }
 

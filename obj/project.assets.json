@@ -340,6 +340,45 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/SQLite.Interop.dll": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-x64/native/SQLite.Interop.dll": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/SQLite.Interop.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x86/native/SQLite.Interop.dll": {
+            "assetType": "native",
+            "rid": "win-x86"
+          }
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
+        }
+      },
       "System.Memory/4.5.3": {
         "type": "package",
         "dependencies": {
@@ -905,6 +944,27 @@
         },
         "runtime": {
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
         }
       },
       "System.Memory/4.5.3": {
@@ -1475,6 +1535,27 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
+        }
+      },
       "System.Memory/4.5.3": {
         "type": "package",
         "dependencies": {
@@ -2043,6 +2124,27 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
+        }
+      },
       "System.Memory/4.5.3": {
         "type": "package",
         "dependencies": {
@@ -2608,6 +2710,30 @@
         },
         "runtime": {
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/SQLite.Interop.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
         }
       },
       "System.Memory/4.5.3": {
@@ -3178,6 +3304,30 @@
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
         }
       },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "native": {
+          "runtimes/win-x64/native/SQLite.Interop.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
+        }
+      },
       "System.Memory/4.5.3": {
         "type": "package",
         "dependencies": {
@@ -3743,6 +3893,30 @@
         },
         "runtime": {
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "native": {
+          "runtimes/win-x86/native/SQLite.Interop.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
         }
       },
       "System.Memory/4.5.3": {
@@ -4311,6 +4485,30 @@
         },
         "runtime": {
           "lib/netstandard2.0/SQLitePCLRaw.core.dll": {}
+        }
+      },
+      "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Data.SQLite.dll": {}
+        },
+        "native": {
+          "runtimes/win-x86/native/SQLite.Interop.dll": {}
+        }
+      },
+      "System.Data.SQLite/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "System.Data.SQLite.Core": "1.0.113.6"
+        }
+      },
+      "System.Data.SQLite.Core/1.0.113.6": {
+        "type": "package",
+        "dependencies": {
+          "Stub.System.Data.SQLite.Core.NetStandard": "1.0.113.1"
         }
       },
       "System.Memory/4.5.3": {
@@ -8836,6 +9034,49 @@
         "sqlitepclraw.core.nuspec"
       ]
     },
+    "Stub.System.Data.SQLite.Core.NetStandard/1.0.113.1": {
+      "sha512": "qFjwuCuZlTz3yT06gaueDJwTykiblNeaLTx3sONXoNlLm2NJwghLvr+W9fvRevKcYcIRiKrq6WJ56QwZJq9fnQ==",
+      "type": "package",
+      "path": "stub.system.data.sqlite.core.netstandard/1.0.113.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/System.Data.SQLite.dll",
+        "lib/netstandard2.0/System.Data.SQLite.dll.altconfig",
+        "lib/netstandard2.0/System.Data.SQLite.xml",
+        "lib/netstandard2.1/System.Data.SQLite.dll",
+        "lib/netstandard2.1/System.Data.SQLite.dll.altconfig",
+        "lib/netstandard2.1/System.Data.SQLite.xml",
+        "runtimes/linux-x64/native/SQLite.Interop.dll",
+        "runtimes/osx-x64/native/SQLite.Interop.dll",
+        "runtimes/win-x64/native/SQLite.Interop.dll",
+        "runtimes/win-x86/native/SQLite.Interop.dll",
+        "stub.system.data.sqlite.core.netstandard.1.0.113.1.nupkg.sha512",
+        "stub.system.data.sqlite.core.netstandard.nuspec"
+      ]
+    },
+    "System.Data.SQLite/1.0.113.6": {
+      "sha512": "fM5nJJjnkh7SlYPLuvAAIm1R6oXFSyM5/iuT0wtJDfUsfi195m+TFjNd5g2/KhGQP+rBd5IECHGW+omVGDNmoA==",
+      "type": "package",
+      "path": "system.data.sqlite/1.0.113.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "system.data.sqlite.1.0.113.6.nupkg.sha512",
+        "system.data.sqlite.nuspec"
+      ]
+    },
+    "System.Data.SQLite.Core/1.0.113.6": {
+      "sha512": "8Iyo9b2iG29eYCGjnly6EdF+yw20q83vRTkK9zpJzip5QvQeRSs7rQPmaxg+R2oJKNL8w/6K274F6YHXkEjq5w==",
+      "type": "package",
+      "path": "system.data.sqlite.core/1.0.113.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "system.data.sqlite.core.1.0.113.6.nupkg.sha512",
+        "system.data.sqlite.core.nuspec"
+      ]
+    },
     "System.Memory/4.5.3": {
       "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
       "type": "package",
@@ -9625,6 +9866,7 @@
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.10",
       "SQLite.Net-PCL >= 3.1.1",
       "SQLitePCLRaw.core >= 2.0.4",
+      "System.Data.SQLite >= 1.0.113.6",
       "WinRTXamlToolkit.Controls.DataVisualization.UWP >= 2.3.0"
     ]
   },
@@ -9676,6 +9918,10 @@
           "SQLitePCLRaw.core": {
             "target": "Package",
             "version": "[2.0.4, )"
+          },
+          "System.Data.SQLite": {
+            "target": "Package",
+            "version": "[1.0.113.6, )"
           },
           "WinRTXamlToolkit.Controls.DataVisualization.UWP": {
             "target": "Package",

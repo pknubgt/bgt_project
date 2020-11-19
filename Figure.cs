@@ -19,7 +19,9 @@ public class Figure
     //+시작점 +센터 + 끝점
 
     private float totalPressure;
+
     private float partPressure;
+    private List<float> partpoints = new List<float>();
 
     //교차곤란
     private float standardDeviation = 0;
@@ -66,6 +68,11 @@ public class Figure
     {
         get { return strokes; }
         set { strokes = value; }
+    }
+    public List<float> PartPoints
+    {
+        get { return partpoints; }
+        set { partpoints = value; }
     }
 
     public void CalPoints(IReadOnlyList<InkStroke> strokes)
@@ -128,20 +135,17 @@ public class Figure
                 if (partStartPosition.X <= pt.Position.X && partStartPosition.Y <= pt.Position.Y &&
                     partLastPosition.X >= pt.Position.X && partLastPosition.Y >= pt.Position.Y)
                 {
+                    partpoints.Add(pt.Pressure);
                     partPressure += pt.Pressure;
                     varTemp += (pt.Pressure - totalPressure) * (pt.Pressure - totalPressure);//분산에 totalPressure 빼는게 맞는지 확인
                     nTotalPoints++;
                 }
-
             }
         }
         partPressure /= nTotalPoints;//선택영역의 평균
         varTemp /= nTotalPoints;//분산
         variance = varTemp;
         standardDeviation = (float)Math.Round(Math.Sqrt(varTemp), 2);
-
-        //text2.Text = "교차점영역 필압의 평균 : " + partPressure.ToString();
     }
-
 }
 

@@ -40,6 +40,12 @@
     <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\sqlitepclraw.core\2.0.4\lib\netstandard2.0\SQLitePCLRaw.core.dll">
       <PackagePath>SQLitePCLRaw.core.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\stub.system.data.sqlite.core.netstandard\1.0.113.1\runtimes\win-x64\native\SQLite.Interop.dll">
+      <PackagePath>SQLite.Interop.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\stub.system.data.sqlite.core.netstandard\1.0.113.1\lib\netstandard2.0\System.Data.SQLite.dll">
+      <PackagePath>System.Data.SQLite.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\borio\.nuget\packages\system.runtime.compilerservices.unsafe\4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll">
       <PackagePath>System.Runtime.CompilerServices.Unsafe.dll</PackagePath>
     </AppxPackagedFile>

@@ -444,3 +444,8 @@ C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLite.Net.Platform.WinRT.d
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLite.Net.dll
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLitePCLRaw.core.dll
 C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\SQLite.Interop.dll
+C:\Users\borio\Documents\BTGviewer-git\bin\x64\Debug\System.Data.SQLite.dll
+C:\Users\borio\Documents\BTGviewer-git\obj\x64\Debug\System.Data.SQLite\en\System.Data.SQLite.SR.resw
+C:\Users\borio\Documents\BTGviewer-git\obj\x64\Debug\resources.en.resfiles
+C:\Users\borio\Documents\BTGviewer-git\obj\x64\Debug\resources.en.resfiles.intermediate
