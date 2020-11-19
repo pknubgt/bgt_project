@@ -1,4 +1,8 @@
 ﻿using System;
+﻿using SQLite.Net;
+using SQLite.Net.Interop;
+using SQLite.Net.Platform.WinRT;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -12,11 +16,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
-using SQLite.Net.Attributes;
-using SQLite.Net.Platform.WinRT;
-using SQLite.Net.Interop;
-using System.IO;
-using SQLite.Net;
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x412에 나와 있습니다.
 
 
@@ -37,18 +36,21 @@ namespace BGTviewer
         private Rectangle partRect;
         private Rect boundingRect;
 
+        public static Rect drawingRect;
         static Figure[] figure = new Figure[9];
         Symbol LassoSelect = (Symbol)0xEF20;
-        
+
         Point partStartPosition;
         Point partLastPosition;
+
+        Rotation rt = new Rotation();
 
         public MainPage()
         {
             SetFigureName();
             this.InitializeComponent();
             inkCanvas.InkPresenter.InputDeviceTypes |= CoreInputDeviceTypes.Mouse;
-            toolbar.ActiveTool = toolButtonLasso; 
+            toolbar.ActiveTool = toolButtonLasso;
             initValue();
 
             InkDrawingAttributes drawingAttributes = new InkDrawingAttributes();
@@ -57,7 +59,7 @@ namespace BGTviewer
             drawingAttributes.FitToCurve = true;
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
         }
-        
+
         public void TestDatabase(object sender, RoutedEventArgs e)
         {
             // 데이터베이스 파일은 C:\Users\<사용자>\AppData\Local\Packages\<앱의 식별 ID>\LocalState에 저장될 것입니다.
@@ -68,11 +70,24 @@ namespace BGTviewer
             FigureInfo figureinfo = null;
 
             int id = 0;
-            using(SQLiteConnection conn = new SQLiteConnection(sqlitePlatform, pathLocal))
+            using (SQLiteConnection conn = new SQLiteConnection(sqlitePlatform, pathLocal))
             {
+                Point tmp = new Point(0, 0);
                 conn.CreateTable<FigureInfo>();
 
-                figureinfo = new FigureInfo {
+                for (int i = 0; i < figure.Length; i++)
+                {
+                    if (figure[i].Points == null)
+                    {
+                        figure[i].Points = new List<Point>();
+                        figure[i].Points.Add(tmp);
+                    }
+                    //if (figure[i].TotalPressure == null)
+                    //   figure[i].TotalPressure = 0.0f;
+                }
+
+                figureinfo = new FigureInfo
+                {
                     ID = id++,
 
                     PointNum_A = figure[0].Points.ToArray().Length,
@@ -97,15 +112,13 @@ namespace BGTviewer
 
                     PartPressure_6 = BGTviewer.MainPage.figure[6].PartPressure
                 };
-               
                 Debug.WriteLine(string.Format("figure[0].Points = {0}, figure[0].TotalPressure = {1}", figure[0].Points.ToArray().Length, figure[0].TotalPressure));
-
                 conn.Insert(figureinfo);
             }
         }
 
         private void SetFigureName()
-        { 
+        {
             for (int i = 0; i < 9; i++)
             {
                 figure[i] = new Figure();
@@ -117,7 +130,7 @@ namespace BGTviewer
         }
         private bool is_Done()
         {
-            for(int i = 0; i < figure.Length; i++)
+            for (int i = 0; i < figure.Length; i++)
             {
                 if (figure[i].complete == false)
                     goto end;
@@ -155,7 +168,7 @@ namespace BGTviewer
         {
             Reiteration rr = new Reiteration();
             rr.reiteration(figure);
-            
+
             RR.Text = rr.PSV.ToString();
         }
 
@@ -167,6 +180,21 @@ namespace BGTviewer
             OD.Text = od.PSV.ToString();
         }
 
+        public void Bt_RT(object sender, RoutedEventArgs e)/////////////////////지각한 회전 rotation
+        {
+            if (rt.Flagrt == false)
+            {
+                instruction.Text = "지각된 회전 점 선택";
+                rt.Flagrt = true;
+            }
+            else
+            {
+                rt.Flagrt = false;
+                rt.rotation();
+                RT.Text = rt.PSV.ToString();
+            }
+        }
+
         public void Bt_UP(object sender, RoutedEventArgs e)
         {
             float size = 1.2f;
@@ -176,11 +204,14 @@ namespace BGTviewer
             var bounds = container.BoundingRect;
             var center = new Vector2((float)bounds.Left, (float)bounds.Top);
             var transform = Matrix3x2.CreateScale(size, size, center);
-
             foreach (var stroke in strokes)
             {
                 stroke.PointTransform *= transform;
             }
+            drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
+
+            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
+            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
 
         private void Bt_DOWN(object sender, RoutedEventArgs e)
@@ -191,12 +222,15 @@ namespace BGTviewer
             var bounds = container.BoundingRect;
             var center = new Vector2((float)bounds.Left, (float)bounds.Top);
             var transform = Matrix3x2.CreateScale(size, size, center);
-
             foreach (var stroke in strokes)
             {
                 stroke.PointTransform *= transform;
             }
-            
+
+            drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
+
+            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
+            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
 
         private void Bt_fA(object sender, RoutedEventArgs e)
@@ -281,17 +315,66 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-                //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); //?
+              
+                //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }
             else
             {
                 //this.textBlock.Text = "Operation cancelled.";
             }
         }
-        
+
         private void UnprocessedInput_PointerPressed(InkUnprocessedInput sender, PointerEventArgs args)
         {
-            if (isPartPressure == true)
+            if (rt.Flagrt == true) // 지각된 회전 옵션 - 양 끝점 좌표 찍기
+            {
+
+                var dot = new Ellipse()
+                {
+                    Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                    StrokeThickness = 3,
+                    Width = 8,
+                    Height = 8,
+                };
+
+                for (int i = 0; i < 9; i++)
+                {
+                    if (figure[i].selected == true && rt.Flagrt_in == false)
+                    {
+                        rt.Fignum = i;
+
+                        rt.Vertex[0].X = args.CurrentPoint.Position.X;
+                        rt.Vertex[0].Y = args.CurrentPoint.Position.Y;
+
+                        Canvas.SetLeft(dot, rt.Vertex[0].X);
+                        Canvas.SetTop(dot, rt.Vertex[0].Y);
+
+                        selectionCanvas.Children.Remove(dot);
+                        selectionCanvas.Children.Add(dot);
+                        //Debug.WriteLine("x = " + rt.Vertex[0].X + " y= " + rt.Vertex[0].Y);
+
+                        rt.Flagrt_in = true;
+                    }
+                }
+
+                if (rt.Vertex[0].X != args.CurrentPoint.Position.X && rt.Vertex[0].Y != args.CurrentPoint.Position.Y && figure[rt.Fignum].selected == true)
+                {
+                    rt.Vertex[1].X = args.CurrentPoint.Position.X;
+                    rt.Vertex[1].Y = args.CurrentPoint.Position.Y;
+
+                    //Debug.WriteLine("x = " + rt.Vertex[1].X + " y= " + rt.Vertex[1].Y);
+
+                    Canvas.SetLeft(dot, rt.Vertex[1].X);
+                    Canvas.SetTop(dot, rt.Vertex[1].Y);
+
+                    selectionCanvas.Children.Add(dot);
+                    figure[rt.Fignum].selected = false;
+                    rt.Flagrt_in = false;
+                    rt.Calc_RT();
+
+                }
+            }
+            else if (isPartPressure == true)
             {
                 partStartPosition = args.CurrentPoint.Position;
             }
@@ -301,7 +384,7 @@ namespace BGTviewer
                 {
                     Stroke = new SolidColorBrush(Windows.UI.Colors.Blue),
                     StrokeThickness = 1,
-                    StrokeDashArray = new DoubleCollection() { 5, 2 }, 
+                    StrokeDashArray = new DoubleCollection() { 5, 2 },
                 };
 
                 lasso.Points.Add(args.CurrentPoint.RawPosition);
@@ -319,7 +402,7 @@ namespace BGTviewer
             {
                 selectionCanvas.Children.Remove(partRect);
                 partLastPosition = args.CurrentPoint.Position;
-                
+
                 try
                 {
                     partRect = new Rectangle()
@@ -386,7 +469,7 @@ namespace BGTviewer
             }
 
         }
-        
+
         private void DrawBoundingRect(Figure f)
         {
 
@@ -404,6 +487,31 @@ namespace BGTviewer
                 StrokeDashArray = new DoubleCollection() { 5, 2 },
                 Width = boundingRect.Width,
                 Height = boundingRect.Height
+            };
+
+            Canvas.SetLeft(rectangle, boundingRect.X);
+            Canvas.SetTop(rectangle, boundingRect.Y);
+
+            selectionCanvas.Children.Add(rectangle);
+        }
+
+        private void DrawRect(Rectangle rectangle,double width, double height)
+        {
+
+            selectionCanvas.Children.Remove(rectangle);
+
+            if (boundingRect.Width <= 0 || boundingRect.Height <= 0)
+            {
+                return;
+            }
+
+            rectangle = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Coral),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = width,
+                Height = height
             };
 
             Canvas.SetLeft(rectangle, boundingRect.X);
@@ -450,8 +558,8 @@ namespace BGTviewer
                     if (partStartPosition.X <= pt.Position.X && partStartPosition.Y <= pt.Position.Y &&
                         partLastPosition.X >= pt.Position.X && partLastPosition.Y >= pt.Position.Y)
                     {
-                        if (TotalPressureList.Exists(x => x.location == pt.Position) == true 
-                            && PartPressureList.Exists(x => x.location == pt.Position) != true) 
+                        if (TotalPressureList.Exists(x => x.location == pt.Position) == true
+                            && PartPressureList.Exists(x => x.location == pt.Position) != true)
                         {
                             int idx = TotalPressureList.FindIndex(v => v.location == pt.Position);
                             PartPressureList.Add(TotalPressureList[idx]);
@@ -459,7 +567,7 @@ namespace BGTviewer
                     }
                 }
             }
-           
+
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
             (LineChart.Series[1] as LineSeries).ItemsSource = PartPressureList;
         }
@@ -469,25 +577,25 @@ namespace BGTviewer
             var strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
             int i = 0;
 
-                TotalPressureList = new List<PressureGraph>();
+            TotalPressureList = new List<PressureGraph>();
 
-                float sum = 0;
+            float sum = 0;
 
-                foreach (var stroke in strokes)
+            foreach (var stroke in strokes)
+            {
+                if (stroke.Selected != true)
+                    continue;
+                var points = stroke.GetInkPoints();
+
+                foreach (var pt in points)
                 {
-                    if (stroke.Selected != true)
-                        continue;
-                    var points = stroke.GetInkPoints();
-
-                    foreach (var pt in points)
-                    {
-                        sum += pt.Pressure;
-                        i++;
-                        if (i % 10 == 0)
-                            TotalPressureList.Add(new PressureGraph() { location = pt.Position, index = i, strength = sum / 10.0F });
-                        sum = 0;
-                    }
+                    sum += pt.Pressure;
+                    i++;
+                    if (i % 10 == 0)
+                        TotalPressureList.Add(new PressureGraph() { location = pt.Position, index = i, strength = sum / 10.0F });
+                    sum = 0;
                 }
+            }
 
                 (LineChart.Series[0] as LineSeries).ItemsSource = null;
                 (LineChart.Series[1] as LineSeries).ItemsSource = null;
@@ -500,11 +608,14 @@ namespace BGTviewer
         {
             for (int i = 0; i < figure.Length; i++)
             {
-                if (figure[i].selected == true && isPartPressure != true)
+                if (figure[i].selected == true && isPartPressure != true && rt.Flagrt != true)
                 {
                     DrawBoundingRect(figure[i]);
                     TotalPressureGraph(figure[i]);
                     figure[i].BoundingRect = boundingRect;
+                    figure[i].Start = new Point(boundingRect.Left, boundingRect.Top);
+                    figure[i].Center = new Point((boundingRect.Left + boundingRect.Right) / 2, (boundingRect.Top + boundingRect.Bottom) / 2);
+                    figure[i].End = new Point(boundingRect.Right, boundingRect.Bottom);
                     figure[i].Strokes = inkCanvas.InkPresenter.StrokeContainer.GetStrokes();
                     figure[i].CalPoints(figure[i].Strokes);
                     instruction.Text = figure[i].Name + " 전체 저장";
@@ -514,7 +625,7 @@ namespace BGTviewer
 
                     break;
                 }
-                else if (figure[i].selected == true && isPartPressure == true)
+                else if (figure[i].selected == true && isPartPressure == true && rt.Flagrt != true)
                 {
                     PartPressureGraph(figure[i]);
                     figure[i].CalcPartPressure(figure[i].Strokes, partStartPosition, partLastPosition);
@@ -523,7 +634,7 @@ namespace BGTviewer
 
                     break;
                 }
-                else if (figure[i].selected == false) //아무 버튼도 선택되지 않았을 경우  (i == figure.Length - 1 &&)
+                else if (figure[i].selected == false && rt.Flagrt != true) //아무 버튼도 선택되지 않았을 경우  (i == figure.Length - 1 &&)
                 {
                     instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
                 }
@@ -541,6 +652,6 @@ namespace BGTviewer
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
         }
 
-        
+
     }
 }

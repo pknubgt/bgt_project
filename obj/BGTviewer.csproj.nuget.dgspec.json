@@ -41,6 +41,14 @@
               "target": "Package",
               "version": "[6.2.10, )"
             },
+            "SQLite.Net-PCL": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "SQLitePCLRaw.core": {
+              "target": "Package",
+              "version": "[2.0.4, )"
+            },
             "WinRTXamlToolkit.Controls.DataVisualization.UWP": {
               "target": "Package",
               "version": "[2.3.0, )"

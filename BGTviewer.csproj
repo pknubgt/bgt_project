@@ -120,6 +120,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Drawing.cs" />
+    <Compile Include="Elaboration.cs" />
     <Compile Include="FigureInfo.cs" />
     <Compile Include="Crossing.cs" />
     <Compile Include="OverlappingDifficulty.cs" />
@@ -127,9 +129,11 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PositionA.cs" />
     <Compile Include="PressureGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reiteration.cs" />
+    <Compile Include="Rotation.cs" />
     <Compile Include="Simplification.cs" />
     <Compile Include="UseSpace.cs" />
   </ItemGroup>
