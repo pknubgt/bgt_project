@@ -15,7 +15,13 @@ class UseSpace
         set { psv = value; }
     }
 
-    private List<float> scoreUseofspace = new List<float>();
+    private List<string> usespaceinfo = new List<string>();
+    int count = 0;
+
+    public List<string> UseOfSpaceReport()
+    {
+        return usespaceinfo;
+    }
 
     public void UseOfSpace(Figure[] f)//공간사용
     {
@@ -29,23 +35,28 @@ class UseSpace
         {
             for (int j = i + 1; j < f.Length; j++)
             {
-                if (xmin > Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X))
+                if (i == j)
                 {
-                    xmin = Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X);
-                    minH1 = f[i]; minH2 = f[j];
+                    continue;
                 }
-                if (ymin > Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y))
+                else
                 {
-                    ymin = Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y);
-                    minV1 = f[i]; minV2 = f[j];
+                    if (xmin > Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X))
+                    {
+                        xmin = Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X);
+                        minH1 = f[i]; minH2 = f[j];
+                    }
+                    if (ymin > Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y))
+                    {
+                        ymin = Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y);
+                        minV1 = f[i]; minV2 = f[j];
+                    }
                 }
             }
             UseOfSpace(minH1, minH2, minV1, minV2, xmin, ymin);
         }
 
-        double resultValue = scoreUseofspace.Sum() / scoreUseofspace.ToArray().Length;
-
-        if (resultValue > 5)
+        if (count >= 2)
             psv = 10;
         else
             psv = 1;
@@ -61,13 +72,8 @@ class UseSpace
                 double Ssize = Math.Abs((mh1.BoundingRect.X + mh1.BoundingRect.Width) - mh2.BoundingRect.X);
                 if (mh1.BoundingRect.Width / 2 <= Ssize || mh1.BoundingRect.Width / 4 >= Ssize)//BoundingRect.Width : 도형을 감싸는 사각형의 너비
                 {
-                    scoreUseofspace.Add(10);
-                    //instruction.Text = "수평방향 비정상적 공간의 사용";
-                }
-                else
-                {
-                    scoreUseofspace.Add(1);
-                    //instruction.Text = "수평방향 정상적 공간의 사용";
+                    count++;
+                    usespaceinfo.Add(mh1.Name + "&" + mh2.Name);
                 }
             }
             else
@@ -75,13 +81,8 @@ class UseSpace
                 double Ssize = Math.Abs((mh2.BoundingRect.X + mh2.BoundingRect.Width) - mh1.BoundingRect.X);
                 if (mh2.BoundingRect.Width / 2 <= Ssize && mh2.BoundingRect.Width / 4 >= Ssize)
                 {
-                    scoreUseofspace.Add(10);
-                    //instruction.Text = "수평방향 비정상적 공간의 사용";
-                }
-                else
-                {
-                    scoreUseofspace.Add(1);
-                    //instruction.Text = "수평방향 정상적 공간의 사용";
+                    count++;
+                    usespaceinfo.Add(mh1.Name + "&" + mh2.Name);
                 }
             }
         }
@@ -93,13 +94,8 @@ class UseSpace
                 double Sszie = Math.Abs((mv1.BoundingRect.Y + mv1.BoundingRect.Height) - mv2.BoundingRect.Y);
                 if (mv1.BoundingRect.Height / 2 <= Sszie || mv1.BoundingRect.Height / 4 >= Sszie)//BoundingRect.Height : 도형을 감싸는 사각형의 높이
                 {
-                    scoreUseofspace.Add(10);
-                    //instruction.Text = "수직방향 비정상적 공간의 사용";
-                }
-                else
-                {
-                    scoreUseofspace.Add(1);
-                    //instruction.Text = "수직방향 정상적 공간의 사용";
+                    count++;
+                    usespaceinfo.Add(mv1.Name + "&" + mv2.Name);
                 }
             }
             else //mv2가 위쪽에 있을 때
@@ -107,16 +103,10 @@ class UseSpace
                 double Sszie = Math.Abs((mv2.BoundingRect.Y + mv2.BoundingRect.Height) - mv1.BoundingRect.Y);
                 if (mv2.BoundingRect.Height / 2 <= Sszie || mv2.BoundingRect.Height / 4 >= Sszie)
                 {
-                    scoreUseofspace.Add(10);
-                    //instruction.Text = "수직방향 비정상적 공간의 사용";
-                }
-                else
-                {
-                    scoreUseofspace.Add(1);
-                    //instruction.Text = "수직방향 정상적 공간의 사용";
+                    count++;
+                    usespaceinfo.Add(mv1.Name + "&" + mv2.Name);
                 }
             }
         }
     }
 }
-

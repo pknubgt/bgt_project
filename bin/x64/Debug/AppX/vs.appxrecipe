@@ -30,13 +30,13 @@
     <AppXManifest Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-11-19T10:59:15.427</Modified>
+      <Modified>2020-11-20T12:11:40.186</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\BGTviewer.exe">
       <PackagePath>entrypoint\BGTviewer.exe</PackagePath>
-      <Modified>2020-11-19T10:59:11.400</Modified>
+      <Modified>2020-11-20T12:11:39.132</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\UWPNuGetPackages\runtime.win10-x64.microsoft.netcore.universalwindowsplatform\6.2.10\runtimes\win10-x64\lib\uap10.0.15138\System.Runtime.dll">
       <PackagePath>System.Runtime.dll</PackagePath>
@@ -370,11 +370,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-11-19T10:59:10.872</Modified>
+      <Modified>2020-11-20T12:11:38.893</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-11-19T10:59:10.872</Modified>
+      <Modified>2020-11-20T12:11:38.893</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Windows Kits\10\UnionMetadata\10.0.17763.0\Windows.winmd">
       <PackagePath>WinMetadata\Windows.winmd</PackagePath>
@@ -386,7 +386,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="D:\Project\Project_bgt\bgt_project\bin\x64\Debug\Core\BGTviewer.exe">
       <PackagePath>BGTviewer.exe</PackagePath>
-      <Modified>2020-11-19T10:59:15.417</Modified>
+      <Modified>2020-11-20T12:11:40.183</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

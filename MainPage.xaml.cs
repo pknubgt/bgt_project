@@ -34,6 +34,7 @@ namespace BGTviewer
         private bool isPartPressure = false;
         private Rectangle partRect;
         private Rect boundingRect;
+        private Rectangle total;
 
         public static Rect drawingRect;
         static Figure[] figure = new Figure[9];
@@ -148,19 +149,33 @@ namespace BGTviewer
             OverlappingDifficulty overlappingDifficulty = new OverlappingDifficulty();//중복 곤란
 
             crossing.checkCrossing(figure[6], figure[7]);
-            resultCrossing.Text = crossing.PSV.ToString();
+            //resultCrossing.Text = crossing.PSV.ToString();
 
             useSpace.UseOfSpace(figure);
             US.Text = useSpace.PSV.ToString();
 
-            simple.simplification(figure[6]);
-            SP.Text = figure[6].is_simplification.ToString();
+            //simple.simplification(figure[6]);
+            //SP.Text = figure[6].is_simplification.ToString();
 
             reiteration.reiteration(figure);
             RR.Text = reiteration.PSV.ToString();
 
             overlappingDifficulty.Overlapping_difficulty(figure);
             OD.Text = overlappingDifficulty.PSV.ToString();
+        }
+
+        public void Bt_US(object sender, RoutedEventArgs e)
+        {
+            UseSpace usespace = new UseSpace();
+            usespace.UseOfSpace(figure);
+            US.Text = usespace.PSV.ToString();
+        }
+
+        public void Bt_CS(object sender, RoutedEventArgs e)
+        {
+            Crossing crossing = new Crossing();
+            crossing.checkCrossing(figure[6], figure[7]);
+            CS.Text = crossing.PSV.ToString();
         }
 
         public void Bt_RR(object sender, RoutedEventArgs e)/////////////////////중첩
@@ -194,8 +209,27 @@ namespace BGTviewer
             }
         }
 
+        public void Bt_PA(object sender, RoutedEventArgs e)/////////////////////도형A의 위치
+        {
+            PositionA pa = new PositionA();
+            pa.checkPositionA(drawingRect, figure[0]);
+
+            PA.Text = pa.PSV.ToString();
+        }
+
+        public void Bt_RG(object sender, RoutedEventArgs e)/////////////////////퇴영
+        {
+            RetroGrade rg = new RetroGrade();
+            rg.retrograde(figure);
+
+            RG.Text = rg.PSV.ToString();
+        }
+
+
         public void Bt_UP(object sender, RoutedEventArgs e)
         {
+            selectionCanvas.Children.Remove(total);
+
             float size = 1.2f;
             Debug.WriteLine("size: " + size);
             var container = inkCanvas.InkPresenter.StrokeContainer;
@@ -209,12 +243,26 @@ namespace BGTviewer
             }
             drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
 
-            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
-            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
+            total = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = drawingRect.Width,
+                Height = drawingRect.Height,
+            };
+
+            Canvas.SetLeft(total, bounds.Left);
+            Canvas.SetTop(total, bounds.Top);
+
+            
+            selectionCanvas.Children.Add(total);
         }
 
         private void Bt_DOWN(object sender, RoutedEventArgs e)
         {
+            selectionCanvas.Children.Remove(total);
+
             float size = 0.8f;
             var container = inkCanvas.InkPresenter.StrokeContainer;
             var strokes = container.GetStrokes();
@@ -228,6 +276,19 @@ namespace BGTviewer
 
             drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
 
+            total = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = drawingRect.Width,
+                Height = drawingRect.Height,
+            };
+
+            Canvas.SetLeft(total, bounds.Left);
+            Canvas.SetTop(total, bounds.Top);
+
+            selectionCanvas.Children.Add(total);
             //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
             //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
@@ -314,7 +375,8 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-              
+
+
                 //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }
             else
