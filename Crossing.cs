@@ -24,7 +24,6 @@ class Crossing
 
         for (int i = 0; i < 2; i++)
         {
-            int k = 0;
 
             if (i == 0)
             {

@@ -2,7 +2,6 @@
 ﻿using SQLite.Net;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -16,6 +15,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
+using Windows.UI.Xaml.Media.Imaging;
+using Windows.Storage.FileProperties;
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x412에 나와 있습니다.
 
 
@@ -164,6 +165,14 @@ namespace BGTviewer
             OD.Text = overlappingDifficulty.PSV.ToString();
         }
 
+        private void Bt_SP(object sender, RoutedEventArgs e)
+        {
+            Simplification sp = new Simplification();
+            sp.simplification(figure);
+
+            SP.Text = sp.PSV.ToString();
+        }
+
         public void Bt_RR(object sender, RoutedEventArgs e)/////////////////////중첩
         {
             Reiteration rr = new Reiteration();
@@ -307,7 +316,6 @@ namespace BGTviewer
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
 
-
             if (file != null)
             {
                 // Application now has read/write access to the picked file
@@ -315,7 +323,7 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-              
+                
                 //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }
             else
@@ -641,7 +649,6 @@ namespace BGTviewer
                 
             }
             
-
             if (is_Done()==true)
                 GetResult();
         }
@@ -652,6 +659,6 @@ namespace BGTviewer
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
         }
 
-
+        
     }
 }
