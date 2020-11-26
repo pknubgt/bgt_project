@@ -1,7 +1,7 @@
-﻿using System;
 ﻿using SQLite.Net;
 using SQLite.Net.Interop;
 using SQLite.Net.Platform.WinRT;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Numerics;
@@ -15,8 +15,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Shapes;
 using WinRTXamlToolkit.Controls.DataVisualization.Charting;
-using Windows.UI.Xaml.Media.Imaging;
-using Windows.Storage.FileProperties;
 // 빈 페이지 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x412에 나와 있습니다.
 
 
@@ -36,6 +34,7 @@ namespace BGTviewer
         private bool isPartPressure = false;
         private Rectangle partRect;
         private Rect boundingRect;
+        private Rectangle total;
 
         public static Rect drawingRect;
         static Figure[] figure = new Figure[9];
@@ -150,13 +149,13 @@ namespace BGTviewer
             OverlappingDifficulty overlappingDifficulty = new OverlappingDifficulty();//중복 곤란
 
             crossing.checkCrossing(figure[6], figure[7]);
-            resultCrossing.Text = crossing.PSV.ToString();
+            //resultCrossing.Text = crossing.PSV.ToString();
 
             useSpace.UseOfSpace(figure);
             US.Text = useSpace.PSV.ToString();
 
-            simple.simplification(figure);
-            SP.Text = simple.PSV.ToString();
+            //simple.simplification(figure[6]);
+            //SP.Text = figure[6].is_simplification.ToString();
 
             reiteration.reiteration(figure);
             RR.Text = reiteration.PSV.ToString();
@@ -165,12 +164,18 @@ namespace BGTviewer
             OD.Text = overlappingDifficulty.PSV.ToString();
         }
 
-        private void Bt_SP(object sender, RoutedEventArgs e)
+        public void Bt_US(object sender, RoutedEventArgs e)
         {
-            Simplification sp = new Simplification();
-            sp.simplification(figure);
+            UseSpace usespace = new UseSpace();
+            usespace.UseOfSpace(figure);
+            US.Text = usespace.PSV.ToString();
+        }
 
-            SP.Text = sp.PSV.ToString();
+        public void Bt_CS(object sender, RoutedEventArgs e)
+        {
+            Crossing crossing = new Crossing();
+            crossing.checkCrossing(figure[6], figure[7]);
+            CS.Text = crossing.PSV.ToString();
         }
 
         public void Bt_RR(object sender, RoutedEventArgs e)/////////////////////중첩
@@ -204,8 +209,27 @@ namespace BGTviewer
             }
         }
 
+        public void Bt_PA(object sender, RoutedEventArgs e)/////////////////////도형A의 위치
+        {
+            PositionA pa = new PositionA();
+            pa.checkPositionA(drawingRect, figure[0]);
+
+            PA.Text = pa.PSV.ToString();
+        }
+
+        public void Bt_RG(object sender, RoutedEventArgs e)/////////////////////퇴영
+        {
+            RetroGrade rg = new RetroGrade();
+            rg.retrograde(figure);
+
+            RG.Text = rg.PSV.ToString();
+        }
+
+
         public void Bt_UP(object sender, RoutedEventArgs e)
         {
+            selectionCanvas.Children.Remove(total);
+
             float size = 1.2f;
             Debug.WriteLine("size: " + size);
             var container = inkCanvas.InkPresenter.StrokeContainer;
@@ -219,12 +243,26 @@ namespace BGTviewer
             }
             drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
 
-            //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
-            //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
+            total = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = drawingRect.Width,
+                Height = drawingRect.Height,
+            };
+
+            Canvas.SetLeft(total, bounds.Left);
+            Canvas.SetTop(total, bounds.Top);
+
+            
+            selectionCanvas.Children.Add(total);
         }
 
         private void Bt_DOWN(object sender, RoutedEventArgs e)
         {
+            selectionCanvas.Children.Remove(total);
+
             float size = 0.8f;
             var container = inkCanvas.InkPresenter.StrokeContainer;
             var strokes = container.GetStrokes();
@@ -238,6 +276,19 @@ namespace BGTviewer
 
             drawingRect = inkCanvas.InkPresenter.StrokeContainer.BoundingRect;
 
+            total = new Rectangle()
+            {
+                Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                StrokeThickness = 1,
+                StrokeDashArray = new DoubleCollection() { 5, 2 },
+                Width = drawingRect.Width,
+                Height = drawingRect.Height,
+            };
+
+            Canvas.SetLeft(total, bounds.Left);
+            Canvas.SetTop(total, bounds.Top);
+
+            selectionCanvas.Children.Add(total);
             //drawing.Height = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Height; // 이거랑 bounds.Height랑 결과가 다름....
             //drawing.Width = inkCanvas.InkPresenter.StrokeContainer.BoundingRect.Width;
         }
@@ -316,6 +367,7 @@ namespace BGTviewer
 
             Windows.Storage.StorageFile file = await picker.PickSingleFileAsync();
 
+
             if (file != null)
             {
                 // Application now has read/write access to the picked file
@@ -323,7 +375,8 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-                
+
+
                 //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }
             else
@@ -578,6 +631,7 @@ namespace BGTviewer
 
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
             (LineChart.Series[1] as LineSeries).ItemsSource = PartPressureList;
+
         }
 
         public void TotalPressureGraph(Figure f)
@@ -606,10 +660,8 @@ namespace BGTviewer
             }
 
                 (LineChart.Series[0] as LineSeries).ItemsSource = null;
-                (LineChart.Series[1] as LineSeries).ItemsSource = null;
-                (LineChart.Series[0] as LineSeries).ItemsSource = TotalPressureList;
-
-            
+            (LineChart.Series[1] as LineSeries).ItemsSource = null;
+            (LineChart.Series[0] as LineSeries).ItemsSource = TotalPressureList;
         }
 
         private void SelectedFigure()
@@ -630,7 +682,6 @@ namespace BGTviewer
                     figure[i].selected = false;
                     figure[i].complete = true;
                     figure[i].CalcTotalPressure(figure[i].Strokes);
-
                     break;
                 }
                 else if (figure[i].selected == true && isPartPressure == true && rt.Flagrt != true)
@@ -646,11 +697,10 @@ namespace BGTviewer
                 {
                     instruction.Text = "먼저 정보를 저장할 해당하는 도형 버튼을 선택하세요";
                 }
-                
             }
-            
-            if (is_Done()==true)
-                GetResult();
+            /*
+            if(is_Done()==true)
+                GetResult();*/
         }
 
         private void initValue()
@@ -659,6 +709,6 @@ namespace BGTviewer
             (LineChart.Series[1] as LineSeries).ItemsSource = null;
         }
 
-        
+
     }
 }

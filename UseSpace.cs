@@ -55,7 +55,7 @@ class UseSpace
             }
             UseOfSpace(minH1, minH2, minV1, minV2, xmin, ymin);
         }
-        
+
         if (count >= 2)
             psv = 10;
         else
@@ -110,4 +110,3 @@ class UseSpace
         }
     }
 }
-

@@ -5,55 +5,54 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation;
+using Windows.UI.Input.Inking;
 
 namespace BGTviewer
 {
     class PositionA
     {
+        private double psv = 1.0;
+        public double PSV
+        {
+            get { return psv; }
+            set { psv = value; }
+        }
+
         //도형 A의 위치
-        public void CheckPositionA(Drawing drawing, Figure[] figure)
+        public void checkPositionA(Rect rect, Figure fA)
         {
 
             Debug.WriteLine("도형버튼눌림");
-            float inch = 2.54f;
+            double inch = rect.Width * (1 / 8);
             float psv = 0;
+            Point rectStart = new Point(rect.Left, rect.Top);
+            Point rectCenter = new Point((rect.Left + rect.Right) / 2, (rect.Top + rect.Bottom) / 2);
+            Point rectEnd = new Point(rect.Right, rect.Bottom);
 
-            if (figure[0] == null)
-            {
-                return;
-            }
-            Figure fA = figure[0];
-
-            Point positionA = figure[0].Center;
+            Point positionA = fA.Center;
             Debug.WriteLine(positionA);
-            /*
-            if ((drawing - 3 * inch) <= fA.figureStart.X && fA.figureStart.X <= (fileInfo.center.X + 3 * inch) &&
-                ((fileInfo.center.Y - 3 * inch) <= fA.figureStart.Y && fA.figureStart.Y <= (fileInfo.center.Y + 3 * inch)) &&
-                (fileInfo.center.X - 3 * inch) <= fA.EndPoint.X && fA.EndPoint.X <= (fileInfo.center.X + 3 * inch) &&
-                ((fileInfo.center.Y - 3 * inch) <= fA.EndPoint.Y && fA.EndPoint.Y <= (fileInfo.center.Y + 3 * inch)))
+
+            if ((rectCenter.X - 3 * inch) <= fA.Start.X && fA.Start.X <= (rectCenter.X + 3 * inch) &&
+                ((rectCenter.Y - 3 * inch) <= fA.Start.Y && fA.Start.Y <= (rectCenter.Y + 3 * inch)) &&
+                (rectCenter.X - 3 * inch) <= fA.End.X && fA.End.X <= (rectCenter.X + 3 * inch) &&
+                ((rectCenter.Y - 3 * inch) <= fA.End.Y && fA.End.Y <= (rectCenter.Y + 3 * inch)))
             {   //자기중심적 위치
                 psv = 5.0f;
-                Debug.WriteLine(psv);
             }
-            else if ((fileInfo.size.X - inch) <= fA.CenterPoint.X && fA.CenterPoint.X <= (fileInfo.size.X) ||
-                (0 <= fA.CenterPoint.X) && (fA.CenterPoint.X <= inch) ||
-                (fileInfo.size.Y - inch) <= fA.CenterPoint.Y && fA.CenterPoint.Y <= (fileInfo.size.Y) ||
-                (0 <= fA.CenterPoint.Y) && (fA.CenterPoint.Y <= inch))
+            else if ((rect.Right - inch) <= fA.Start.X && fA.End.X <= (rect.Right) ||
+                (rect.Left <= fA.Start.X) && (fA.End.X <= rect.Left + inch) ||
+                (rect.Top - inch) <= fA.End.Y && fA.Start.Y <= (rect.Top) ||
+                (rect.Bottom <= fA.End.Y) && (fA.Start.Y <= rect.Bottom + inch))
             {   //비정상적 위치
                 psv = 10.0f;
-                Debug.WriteLine(psv);
             }
-            else if (fA.figureStart.Y <= fileInfo.size.Y / 3 && fA.EndPoint.Y <= fileInfo.size.Y / 3)
+            else if (fA.End.Y <= rect.Top + rect.Height / 3)
             {   //정상적 위치
                 psv = 1.0f;
-                Debug.WriteLine(fA.figureStart.Y);
-                Debug.WriteLine(fA.EndPoint.Y);
-                Debug.WriteLine(fileInfo.size.Y / 3);
             }
+            else { psv = 10.0f; }
 
-
-        }*/
+        }
     }
 }
 
-}

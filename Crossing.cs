@@ -28,16 +28,16 @@ class Crossing
             if (i == 0)
             {
                 n = f6.PartPoints.ToArray().Length;
-                
+
                 for (int j = 0; j < n; j++)
                 {
                     tmp += f6.PartPoints[j];
                     s = f6.StandardDeviation;
 
-                    if(j % (n / 3) == 0)
+                    if (j % (n / 3) == 0)
                     {
                         float compare = tmp / (n / 3);
-                        if (compare >  f6.TotalPressure + 2 * s || compare < f6.TotalPressure - 2 * s)
+                        if (compare > f6.TotalPressure + 2 * s || compare < f6.TotalPressure - 2 * s)
                             count[0]++;
                     }
                 }
