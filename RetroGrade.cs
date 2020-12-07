@@ -10,8 +10,8 @@ namespace BGTviewer
 {
     public class RetroGrade
     {
-        private List<string> retrogradeInfo = new List<string>();
         private double psv = 1.0;
+        private List<string> retrogradeInfo = new List<string>();
 
 
         public double PSV
@@ -70,7 +70,7 @@ namespace BGTviewer
             Point ct = new Point(0, 0);
             Point ct2 = new Point(0, 0);
 
-            Boolean result = true; //디폴트 값 퇴영 ㅇㅇ
+            Boolean result = true; //디폴트 값은 퇴영O
             int margin = 2;
 
             foreach (var pt in list)
@@ -87,13 +87,17 @@ namespace BGTviewer
 
                     continue;
                 }
-                if ((arraypt.X - Math.Truncate(pt.X) > 7 || Math.Truncate(pt.X) - arraypt.X > 7) && (arraypt.Y - Math.Truncate(pt.Y) > 7 || Math.Truncate(pt.Y) - arraypt.Y > 7))
+
+                //두 좌표의 차이가 7보다 떨어져있으면 떨어져있는 도형에 속한 좌표로 인식
+                if ((arraypt.X - Math.Truncate(pt.X) > 7 || Math.Truncate(pt.X) - arraypt.X > 7) 
+                    && (arraypt.Y - Math.Truncate(pt.Y) > 7 || Math.Truncate(pt.Y) - arraypt.Y > 7))
                 {
                     ct2.X = arraypt.X;
                     ct2.Y = arraypt.Y;
 
                 }
 
+                //+-2이내일 때 퇴영이 아니다.
                 if (((ct.X - margin <= ct2.X) && (ct.X + margin >= ct.X)) && ((ct.Y - margin <= ct2.Y) && (ct.Y + margin >= ct.Y)))
                 {
                     result = false; //퇴영 아님 
@@ -132,9 +136,11 @@ namespace BGTviewer
 
                     continue;
                 }
-                if ((arraypt.X - Math.Truncate(pt.X) > 10 || Math.Truncate(pt.X) - arraypt.X > 10) && (arraypt.Y - Math.Truncate(pt.Y) > 10 || Math.Truncate(pt.Y) - arraypt.Y > 10))
+
+                if ((arraypt.X - Math.Truncate(pt.X) > 10 || Math.Truncate(pt.X) - arraypt.X > 10) 
+                    && (arraypt.Y - Math.Truncate(pt.Y) > 10 || Math.Truncate(pt.Y) - arraypt.Y > 10))
                 {
-                    if (x_max - x_min > margin || y_max - y_min > margin) result = true;
+                    if (x_max - x_min > margin || y_max - y_min > margin) result = true; //////////////////////////////////이부분 잘 모르겠음
                     Debug.WriteLine("i번째 fig " + i + " xmax " + x_max + " xmin " + x_min + " ymax " + y_max + " ymin " + y_min);
 
                     x_max = 0.0; x_min = 1000.0; y_max = 0.0; y_min = 1000.0;
@@ -163,6 +169,7 @@ namespace BGTviewer
                     count++;
 
                     Debug.WriteLine("도형" + i + " 퇴영");
+                    retrogradeInfo.Add(f[i].Name + "퇴영");
                 }
             }
 
@@ -174,6 +181,11 @@ namespace BGTviewer
                 psv = 4;
             else                //없다
                 psv = 1;
+        }
+
+        public List<string> RetroGradeReport()
+        {
+            return retrogradeInfo;
         }
     }
 }

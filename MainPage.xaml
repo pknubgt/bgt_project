@@ -40,7 +40,6 @@
 
                 <MenuBar HorizontalAlignment="Center" Grid.Column="2">
                     <MenuBarItem Title="angle">
-                        <MenuFlyoutItem Text="use click" Click="Bt_useClick"/>
                         <MenuFlyoutItem Text="use stroke" Click="Bt_useStroke"/>
                         <MenuFlyoutItem Text="auto" Click="Bt_useAuto"/>
                         <MenuFlyoutItem Text="해제" Click="Bt_InitAngleButton"/>
@@ -194,7 +193,7 @@
                             Title = "Selected"/>
                     </Charting:Chart>
 
-                    <TextBlock x:Name="report" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="19" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBox x:Name="report" AcceptsReturn="True" TextWrapping="Wrap" Grid.ColumnSpan="4" Grid.Row="19" HorizontalAlignment="Stretch" Height="200" Background="Gray" Foreground="black" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     <!--  
   <Charting:LineSeries
                            x:Name="Pressure"
