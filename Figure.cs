@@ -24,7 +24,7 @@ public class Figure
     private float totalPressure;
 
     private float partPressure;
-    private List<float> partpoints = new List<float>();
+
 
     //교차곤란
     private float standardDeviation = 0;
@@ -37,8 +37,6 @@ public class Figure
 
     //퇴영
     public bool is_retrograde = false;
-
-
 
 
     public string Name

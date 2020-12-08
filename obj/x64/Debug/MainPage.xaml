@@ -31,8 +31,8 @@
                 <Image Height="30" Width="30" Source="/Assets/check.png" Grid.Column="3" HorizontalAlignment="Right"/>
 
                 <InkToolbar x:ConnectionId='41' x:Name="toolbar"                                      Grid.Column="1" HorizontalAlignment="Left" InitialControls="None">
-                    <InkToolbarCustomToolButton x:ConnectionId='48' x:Name="toolButtonLasso"                            ToolTipService.ToolTip="Selection tool">
-                        <SymbolIcon x:ConnectionId='49'                              />
+                    <InkToolbarCustomToolButton x:ConnectionId='47' x:Name="toolButtonLasso"                            ToolTipService.ToolTip="Selection tool">
+                        <SymbolIcon x:ConnectionId='48'                              />
                     </InkToolbarCustomToolButton>
                 </InkToolbar>
 
@@ -40,10 +40,9 @@
 
                 <MenuBar HorizontalAlignment="Center" Grid.Column="2">
                     <MenuBarItem Title="angle">
-                        <MenuFlyoutItem x:ConnectionId='44' Text="use click"                    />
-                        <MenuFlyoutItem x:ConnectionId='45' Text="use stroke"                     />
-                        <MenuFlyoutItem x:ConnectionId='46' Text="auto"                   />
-                        <MenuFlyoutItem x:ConnectionId='47' Text="해제"                           />
+                        <MenuFlyoutItem x:ConnectionId='44' Text="use stroke"                     />
+                        <MenuFlyoutItem x:ConnectionId='45' Text="auto"                   />
+                        <MenuFlyoutItem x:ConnectionId='46' Text="해제"                           />
                     </MenuBarItem>
                 </MenuBar>
                 <Button x:ConnectionId='43' x:Name="clear"                                   Content="clear" Grid.Column="3" HorizontalAlignment="Center" Background="Black" Margin="5"/>
@@ -194,7 +193,7 @@
                             Title = "Selected"/>
                     </Charting:Chart>
 
-                    <TextBlock x:ConnectionId='36' x:Name="report" Grid.ColumnSpan="4" Grid.Column="0" Grid.Row="19" Text=" " HorizontalAlignment="Center" Foreground="Black" FontSize="15" Margin="10"/>
+                    <TextBox x:ConnectionId='36' x:Name="report" AcceptsReturn="True" TextWrapping="Wrap" Grid.ColumnSpan="4" Grid.Row="19" HorizontalAlignment="Stretch" Height="200" Background="Gray" Foreground="black" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
                     <!--  
   <Charting:LineSeries
                            x:Name="Pressure"

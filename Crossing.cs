@@ -45,40 +45,41 @@ class Crossing
             else if (i == 1)
             {
                 n = f7.PartPoints.ToArray().Length;
-
                 for (int j = 0; j < n; j++)
                 {
                     tmp += f7.PartPoints[j];
                     s = f7.StandardDeviation;
 
-                    float compare = tmp / (n / 3);
-                    if (compare > f7.TotalPressure + 2 * s || compare < f7.TotalPressure - 2 * s)
-                        count[0]++;
+                    if (j % (n / 3) == 0)
+                    {
+                        float compare = tmp / (n / 3);
+                        if (compare > f7.TotalPressure + 2 * s || compare < f7.TotalPressure - 2 * s)
+                            count[0]++;
+                    }
                 }
             }
 
             if (count[i] >= 3) //심하다
             {
                 result[i] = 10;
-                crossinginfo.Add("도형" + i + " - 심하다");
+                crossinginfo.Add("도형" + (i + 6) + " - 심하다");
             }
             else if (count[i] == 2)//보통이다
             {
                 result[i] = 7;
-                crossinginfo.Add("도형" + i + " - 보통이다");
+                crossinginfo.Add("도형" + (i + 6) + " - 보통이다");
             }
             else if (count[i] == 1)//경미하다
             {
                 result[i] = 4;
-                crossinginfo.Add("도형" + i + " - 경미하다");
+                crossinginfo.Add("도형" + (i + 6) + " - 경미하다");
             }
             else //없다
             {
                 result[i] = 1;
-                crossinginfo.Add("도형" + i + " - 이상없음");
+                crossinginfo.Add("도형" + (i + 6) + " - 이상없음");
             }
         }
-
         setCheckCrossingScore(result);
     }
 

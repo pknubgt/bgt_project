@@ -20,6 +20,7 @@ class Rotation
     private double[] angle = new double[9];
     private double max_angle = 0;
     private int fignum = 0;
+    private List<string> rotationinfo = new List<string>();
 
 
     public double PSV
@@ -55,7 +56,7 @@ class Rotation
     {
         foreach (var a in angle)
         {
-            if (max_angle < a) max_angle = a;
+            if (max_angle < a) max_angle = a; //회전된 각도 중 제일 큰 각도로 점수 판별
         }
 
         if (max_angle <= 180 && max_angle >= 80) { psv = 10.0; }
@@ -66,12 +67,12 @@ class Rotation
     }
     public void Calc_RT()
     {
-        angle[fignum] = Abs(GetAngle(vertex[0], vertex[1]));
+        angle[fignum] = Math.Abs(GetAngle(vertex[0], vertex[1]));//각 도형의 회전 각도 구한 다음 절댓값 구하여 배열에 값 입력
         Debug.WriteLine("angle [" + fignum + "] = " + angle[fignum]);
 
     }
 
-    public double GetAngle(Point ver1, Point ver2)
+    public double GetAngle(Point ver1, Point ver2) //x축과 선택한 두점(직선) 사이의 각도 구하기
 
     {
         double deltaX = ver2.X - ver1.X;
@@ -80,10 +81,8 @@ class Rotation
         return Math.Atan2(deltaY, deltaX) * (180d / Math.PI);
     }
 
-    public double Abs(double abs)//절댓값
+    public List<string> RotationReport()
     {
-        if (abs < 0) abs = -abs;
-        return abs;
+        return rotationinfo;
     }
 }
-
