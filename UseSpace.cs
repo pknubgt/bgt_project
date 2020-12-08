@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,103 +25,88 @@ class UseSpace
 
     public void UseOfSpace(Figure[] f)//공간사용
     {
-        double mindistance;
-        double[] compare = new double[8];
-        Figure f1 = new Figure();
-        Figure f2 = new Figure(); ;
+        double xmin, ymin;
+        Figure minV1 = null, minV2 = null, minH1 = null, minH2 = null;
+
+        xmin = float.MaxValue;
+        ymin = float.MaxValue;
 
         for (int i = 0; i < f.Length - 1; i++)
         {
-            mindistance = float.MaxValue;
             for (int j = i + 1; j < f.Length; j++)
             {
-                //i번째 도형의 네개의 꼭지점 좌표와 j번째 도형의 위의 양쪽 좌표의 거리를 구한다.
-                compare[0] = Math.Sqrt(Math.Pow(f[i].BoundingRect.X - f[j].BoundingRect.X, 2)+ Math.Pow(f[i].BoundingRect.Y - f[j].BoundingRect.Y, 2)); 
-                compare[1] = Math.Sqrt(Math.Pow(((f[i].BoundingRect.X + f[i].BoundingRect.Width) - (f[j].BoundingRect.X + f[j].BoundingRect.Width)), 2) + Math.Pow(f[i].BoundingRect.Y - f[j].BoundingRect.Y, 2));
-                compare[2] = Math.Sqrt(Math.Pow(f[i].BoundingRect.X - f[j].BoundingRect.X, 2) + Math.Pow((f[i].BoundingRect.Y  + f[i].BoundingRect.Height) - f[j].BoundingRect.Y, 2)); 
-                compare[3] = Math.Sqrt(Math.Pow(((f[i].BoundingRect.X + f[i].BoundingRect.Width) - (f[j].BoundingRect.X + f[j].BoundingRect.Width)), 2) + Math.Pow((f[i].BoundingRect.Y + f[i].BoundingRect.Height) - f[j].BoundingRect.Y, 2));
-                compare[4] = Math.Sqrt(Math.Pow(f[i].BoundingRect.X - (f[j].BoundingRect.X + f[j].BoundingRect.Width), 2) + Math.Pow(f[i].BoundingRect.Y - f[j].BoundingRect.Y, 2));
-                compare[5] = Math.Sqrt(Math.Pow((f[i].BoundingRect.X - (f[j].BoundingRect.X + f[j].BoundingRect.Width)), 2) + Math.Pow((f[i].BoundingRect.Y + f[i].BoundingRect.Height) - f[j].BoundingRect.Y, 2));
-                compare[6] = Math.Sqrt(Math.Pow((f[i].BoundingRect.X + f[i].BoundingRect.Width) - f[j].BoundingRect.X, 2) + Math.Pow(f[i].BoundingRect.Y - f[j].BoundingRect.Y, 2)); 
-                compare[7] = Math.Sqrt(Math.Pow(((f[i].BoundingRect.X + f[i].BoundingRect.Width) - f[j].BoundingRect.X), 2) + Math.Pow((f[i].BoundingRect.Y + f[i].BoundingRect.Height) - f[j].BoundingRect.Y, 2));
-
-                if (mindistance > compare[0] || mindistance > compare[1] || mindistance > compare[2] || mindistance > compare[3] ||
-                    mindistance > compare[4] || mindistance > compare[5] || mindistance > compare[6] || mindistance > compare[7]) //8개의 거리 중 하나라도 mindistance보다 작으면
+                if (i == j)
                 {
-                    Array.Sort(compare);
-
-                    mindistance = compare[0];   //그 중 최소값을 mindistance에 대입
-
-                    f1 = f[i]; f2 = f[j];       //해당하는 i, j를 대입
-                    Debug.WriteLine("i : " + i + ", j : " + j + ", distance : " + compare[0]);
+                    continue;
+                }
+                else
+                {
+                    if (xmin > Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X))
+                    {
+                        xmin = Math.Abs(f[i].BoundingRect.X - f[j].BoundingRect.X);
+                        minH1 = f[i]; minH2 = f[j];
+                    }
+                    if (ymin > Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y))
+                    {
+                        ymin = Math.Abs(f[i].BoundingRect.Y - f[j].BoundingRect.Y);
+                        minV1 = f[i]; minV2 = f[j];
+                    }
                 }
             }
-            UseOfSpace(f1, f2);
+            UseOfSpace(minH1, minH2, minV1, minV2, xmin, ymin);
         }
-        
-       if (count >= 2)
-           psv = 10;
+
+        if (count >= 2)
+            psv = 10;
         else
             psv = 1;
     }
 
-    private void UseOfSpace(Figure f1, Figure f2)
+    private void UseOfSpace(Figure mh1, Figure mh2, Figure mv1, Figure mv2, double xm, double ym)
     {
-        double margin;
-        
-        if ((f1.BoundingRect.Y <= f2.BoundingRect.Y && (f1.BoundingRect.Y + f1.BoundingRect.Height) >= f2.BoundingRect.Y) ||
-            (f2.BoundingRect.Y <= f1.BoundingRect.Y && (f2.BoundingRect.Y + f2.BoundingRect.Height) >= f1.BoundingRect.Y))
+        if (xm > ym)
         {
-            //감싸는 사각형의 Y좌표 범위가 겹칠 때
-            //수평하다고 판단
-            if (f1.BoundingRect.X < f2.BoundingRect.X)//f1이 왼쪽에 있을 때
+            //X값의 차이가 Y값의 차이보다 클 때 => 수평방향
+            if (mh1.BoundingRect.X < mh2.BoundingRect.X)//minH1이 왼쪽에 있을 때
             {
-                margin = Math.Abs((f1.BoundingRect.X + f1.BoundingRect.Width) - f2.BoundingRect.X);
-                if (f1.BoundingRect.Width / 2 <= margin || f1.BoundingRect.Width / 4 >= margin)//BoundingRect.Width : 도형을 감싸는 사각형의 너비
+                double Ssize = Math.Abs((mh1.BoundingRect.X + mh1.BoundingRect.Width) - mh2.BoundingRect.X);
+                if (mh1.BoundingRect.Width / 2 <= Ssize || mh1.BoundingRect.Width / 4 >= Ssize)//BoundingRect.Width : 도형을 감싸는 사각형의 너비
                 {
                     count++;
-                    usespaceinfo.Add("수평방향 : " + f1.Name + " & " + f2.Name);
-                    Debug.WriteLine("f1.BoundingRect.Width / 2 : " + f1.BoundingRect.Width / 2 + "f1.BoundingRect.Width / 4 : " + f1.BoundingRect.Width / 4);
+                    usespaceinfo.Add(mh1.Name + "&" + mh2.Name);
                 }
             }
             else
             {
-                margin = Math.Abs((f2.BoundingRect.X + f2.BoundingRect.Width) - f1.BoundingRect.X);
-                if (f2.BoundingRect.Width / 2 <= margin && f2.BoundingRect.Width / 4 >= margin)
+                double Ssize = Math.Abs((mh2.BoundingRect.X + mh2.BoundingRect.Width) - mh1.BoundingRect.X);
+                if (mh2.BoundingRect.Width / 2 <= Ssize && mh2.BoundingRect.Width / 4 >= Ssize)
                 {
                     count++;
-                    usespaceinfo.Add("수평방향 : " + f1.Name + " & " + f2.Name);
-                    Debug.WriteLine("f2.BoundingRect.Width / 2 : " + f2.BoundingRect.Width / 2 + "f2.BoundingRect.Width / 4 : " + f2.BoundingRect.Width / 4);
+                    usespaceinfo.Add(mh1.Name + "&" + mh2.Name);
                 }
             }
         }
-        else if((f1.BoundingRect.X <= f2.BoundingRect.X && (f1.BoundingRect.X + f1.BoundingRect.Width) >= f2.BoundingRect.X) || 
-            (f2.BoundingRect.X <= f1.BoundingRect.X && (f2.BoundingRect.X + f2.BoundingRect.Width) >= f1.BoundingRect.X))
+        else
         {
-            //감싸는 사각형의 X좌표 범위가 겹칠 때
-            //수직하다고 판단
-
-            if (f1.BoundingRect.Y < f2.BoundingRect.Y) //f1이 위쪽에 있을 때
+            //수직방향
+            if (mv1.BoundingRect.Y < mv2.BoundingRect.Y) //mv1이 위쪽에 있을 때
             {
-                margin = Math.Abs((f1.BoundingRect.Y + f1.BoundingRect.Height) - f2.BoundingRect.Y);
-                if (f1.BoundingRect.Height / 2 <= margin || f1.BoundingRect.Height / 4 >= margin)//BoundingRect.Height : 도형을 감싸는 사각형의 높이
+                double Sszie = Math.Abs((mv1.BoundingRect.Y + mv1.BoundingRect.Height) - mv2.BoundingRect.Y);
+                if (mv1.BoundingRect.Height / 2 <= Sszie || mv1.BoundingRect.Height / 4 >= Sszie)//BoundingRect.Height : 도형을 감싸는 사각형의 높이
                 {
                     count++;
-                    usespaceinfo.Add("수직방향 : " + f1.Name + " & " + f2.Name);
-                    Debug.WriteLine("f1.BoundingRect.Height / 2 : " + f1.BoundingRect.Height / 2 + "f1.BoundingRect.Height / 4 : " + f1.BoundingRect.Height / 4);
+                    usespaceinfo.Add(mv1.Name + "&" + mv2.Name);
                 }
             }
-            else //f2가 위쪽에 있을 때
+            else //mv2가 위쪽에 있을 때
             {
-                margin = Math.Abs((f2.BoundingRect.Y + f2.BoundingRect.Height) - f1.BoundingRect.Y);
-                if (f2.BoundingRect.Height / 2 <= margin || f2.BoundingRect.Height / 4 >= margin)
+                double Sszie = Math.Abs((mv2.BoundingRect.Y + mv2.BoundingRect.Height) - mv1.BoundingRect.Y);
+                if (mv2.BoundingRect.Height / 2 <= Sszie || mv2.BoundingRect.Height / 4 >= Sszie)
                 {
                     count++;
-                    usespaceinfo.Add("수직방향 : " + f1.Name + " & " + f2.Name);
-                    Debug.WriteLine("f2.BoundingRect.Height / 2 : " + f2.BoundingRect.Height / 2 + "f2.BoundingRect.Height / 4 : " + f2.BoundingRect.Height / 4);
+                    usespaceinfo.Add(mv1.Name + "&" + mv2.Name);
                 }
             }
         }
     }
-    
 }

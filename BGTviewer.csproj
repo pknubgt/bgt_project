@@ -121,6 +121,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Drawing.cs" />
+    <Compile Include="Elaboration.cs" />
     <Compile Include="FigureInfo.cs" />
     <Compile Include="Crossing.cs" />
     <Compile Include="OverlappingDifficulty.cs" />

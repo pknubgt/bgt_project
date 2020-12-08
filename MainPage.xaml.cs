@@ -50,7 +50,7 @@ namespace BGTviewer
             SetFigureName();
             this.InitializeComponent();
             inkCanvas.InkPresenter.InputDeviceTypes |= CoreInputDeviceTypes.Mouse;
-            toolbar.ActiveTool = toolButtonLasso;     //toolbar에서 lasso툴 고정?
+            toolbar.ActiveTool = toolButtonLasso;
             initValue();
 
             InkDrawingAttributes drawingAttributes = new InkDrawingAttributes();
@@ -59,7 +59,64 @@ namespace BGTviewer
             drawingAttributes.FitToCurve = true;
             inkCanvas.InkPresenter.UpdateDefaultDrawingAttributes(drawingAttributes);
         }
-        
+
+        public void TestDatabase(object sender, RoutedEventArgs e)
+        {
+            // 데이터베이스 파일은 C:\Users\<사용자>\AppData\Local\Packages\<앱의 식별 ID>\LocalState에 저장될 것입니다.
+            //C:\Users\borio\AppData\Local\Packages\99c2343f-8bed-4f8a-9010-d5e79a9c5980_4cyg4469rg6fr\LocalState
+            string pathLocal = System.IO.Path.Combine(Windows.Storage.ApplicationData.Current.LocalFolder.Path, "database.sqlite");
+            // Universal Windows Platform에서 실행될 것이므로 플랫폼은 SQLite.Net.Platform.WinRT.SQLitePlatformWinRT를 지정합니다.
+            ISQLitePlatform sqlitePlatform = new SQLitePlatformWinRT();
+            FigureInfo figureinfo = null;
+
+            int id = 0;
+            using (SQLiteConnection conn = new SQLiteConnection(sqlitePlatform, pathLocal))
+            {
+                Point tmp = new Point(0, 0);
+                conn.CreateTable<FigureInfo>();
+
+                for (int i = 0; i < figure.Length; i++)
+                {
+                    if (figure[i].Points == null)
+                    {
+                        figure[i].Points = new List<Point>();
+                        figure[i].Points.Add(tmp);
+                    }
+                    //if (figure[i].TotalPressure == null)
+                    //   figure[i].TotalPressure = 0.0f;
+                }
+
+                figureinfo = new FigureInfo
+                {
+                    ID = id++,
+
+                    PointNum_A = figure[0].Points.ToArray().Length,
+                    PointNum_1 = figure[1].Points.ToArray().Length,
+                    PointNum_2 = figure[2].Points.ToArray().Length,
+                    PointNum_3 = figure[3].Points.ToArray().Length,
+                    PointNum_4 = figure[4].Points.ToArray().Length,
+                    PointNum_5 = figure[5].Points.ToArray().Length,
+                    PointNum_6 = figure[6].Points.ToArray().Length,
+                    PointNum_7 = figure[7].Points.ToArray().Length,
+                    PointNum_8 = figure[8].Points.ToArray().Length,
+
+                    TotalPressure_A = figure[0].TotalPressure,
+                    TotalPressure_1 = figure[1].TotalPressure,
+                    TotalPressure_2 = figure[2].TotalPressure,
+                    TotalPressure_3 = figure[3].TotalPressure,
+                    TotalPressure_4 = figure[4].TotalPressure,
+                    TotalPressure_5 = figure[5].TotalPressure,
+                    TotalPressure_6 = figure[6].TotalPressure,
+                    TotalPressure_7 = figure[7].TotalPressure,
+                    TotalPressure_8 = figure[8].TotalPressure,
+
+                    PartPressure_6 = BGTviewer.MainPage.figure[6].PartPressure
+                };
+                Debug.WriteLine(string.Format("figure[0].Points = {0}, figure[0].TotalPressure = {1}", figure[0].Points.ToArray().Length, figure[0].TotalPressure));
+                conn.Insert(figureinfo);
+            }
+        }
+
         private void SetFigureName()
         {
             for (int i = 0; i < 9; i++)
@@ -71,7 +128,6 @@ namespace BGTviewer
                     figure[i].Name = "figure" + i;
             }
         }
-
         private bool is_Done()
         {
             for (int i = 0; i < figure.Length; i++)
@@ -84,21 +140,35 @@ namespace BGTviewer
         end: return false;
         }
 
-        private void ShowReport(List<string> r)
+        private void GetResult()
         {
-            report.Text = "";
-            for(int i = 0; i < r.ToArray().Length; i++)
-                report.Text += r[i] + '\n';
-        }
+            Crossing crossing = new Crossing();//교차 곤란
+            UseSpace useSpace = new UseSpace();//공간의 사용
+            Simplification simple = new Simplification();//단순화
+            Reiteration reiteration = new Reiteration();//중첩
+            OverlappingDifficulty overlappingDifficulty = new OverlappingDifficulty();//중복 곤란
 
-        List<string> rpt = new List<string>();
+            crossing.checkCrossing(figure[6], figure[7]);
+            //resultCrossing.Text = crossing.PSV.ToString();
+
+            useSpace.UseOfSpace(figure);
+            US.Text = useSpace.PSV.ToString();
+
+            //simple.simplification(figure[6]);
+            //SP.Text = figure[6].is_simplification.ToString();
+
+            reiteration.reiteration(figure);
+            RR.Text = reiteration.PSV.ToString();
+
+            overlappingDifficulty.Overlapping_difficulty(figure);
+            OD.Text = overlappingDifficulty.PSV.ToString();
+        }
 
         public void Bt_US(object sender, RoutedEventArgs e)
         {
             UseSpace usespace = new UseSpace();
             usespace.UseOfSpace(figure);
             US.Text = usespace.PSV.ToString();
-            ShowReport(usespace.UseOfSpaceReport());
         }
 
         public void Bt_CS(object sender, RoutedEventArgs e)
@@ -106,14 +176,13 @@ namespace BGTviewer
             Crossing crossing = new Crossing();
             crossing.checkCrossing(figure[6], figure[7]);
             CS.Text = crossing.PSV.ToString();
-            ShowReport(crossing.CrossingReport());
         }
 
         public void Bt_RR(object sender, RoutedEventArgs e)/////////////////////중첩
         {
             Reiteration rr = new Reiteration();
             rr.reiteration(figure);
-            ShowReport(rr.ReiterationReport());
+
             RR.Text = rr.PSV.ToString();
         }
 
@@ -121,7 +190,7 @@ namespace BGTviewer
         {
             OverlappingDifficulty od = new OverlappingDifficulty();
             od.Overlapping_difficulty(figure);
-            ShowReport(od.OverlappingReport());
+
             OD.Text = od.PSV.ToString();
         }
 
@@ -138,15 +207,13 @@ namespace BGTviewer
                 rt.rotation();
                 RT.Text = rt.PSV.ToString();
             }
-
-            ShowReport(rt.RotationReport());
         }
 
         public void Bt_PA(object sender, RoutedEventArgs e)/////////////////////도형A의 위치
         {
             PositionA pa = new PositionA();
             pa.checkPositionA(drawingRect, figure[0]);
-            ShowReport(pa.PositionAReport());
+
             PA.Text = pa.PSV.ToString();
         }
 
@@ -154,7 +221,7 @@ namespace BGTviewer
         {
             RetroGrade rg = new RetroGrade();
             rg.retrograde(figure);
-            ShowReport(rg.RetroGradeReport());
+
             RG.Text = rg.PSV.ToString();
         }
 
@@ -264,13 +331,17 @@ namespace BGTviewer
         }
 
         //angle 메뉴 
-        private void Bt_useStroke(object sender, RoutedEventArgs e)
+        private void Bt_useClick(object sender, RoutedEventArgs e)
         {
             angleMethod = 1;
         }
-        private void Bt_useAuto(object sender, RoutedEventArgs e)
+        private void Bt_useStroke(object sender, RoutedEventArgs e)
         {
             angleMethod = 2;
+        }
+        private void Bt_useAuto(object sender, RoutedEventArgs e)
+        {
+            angleMethod = 3;
         }
         private void Bt_InitAngleButton(object sender, RoutedEventArgs e)
         {
@@ -450,14 +521,12 @@ namespace BGTviewer
                 SelectedFigure();
 
                 /*
-                Angle angle = new Angle();
-                
                 //각도를 측정하는 방식을 선택
-                if (angleMethod == 1)
-                    angle.getPoints();
-                else if (angleMethod == 2)
-                    angle.autoAngle();
-               */
+                if (angleMethod == 2)
+                    getPoints();
+                else if (angleMethod == 3)
+                    autoAngle();
+                */
             }
 
         }
