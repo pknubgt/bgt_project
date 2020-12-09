@@ -89,8 +89,8 @@ namespace BGTviewer
                 }
 
                 //두 좌표의 차이가 7보다 떨어져있으면 떨어져있는 도형에 속한 좌표로 인식
-                if ((arraypt.X - Math.Truncate(pt.X) > 7 || Math.Truncate(pt.X) - arraypt.X > 7) 
-                    && (arraypt.Y - Math.Truncate(pt.Y) > 7 || Math.Truncate(pt.Y) - arraypt.Y > 7))
+                if ((arraypt.X - Math.Truncate(pt.X) > 5 || Math.Truncate(pt.X) - arraypt.X > 5) 
+                    && (arraypt.Y - Math.Truncate(pt.Y) > 5 || Math.Truncate(pt.Y) - arraypt.Y > 5))
                 {
                     ct2.X = arraypt.X;
                     ct2.Y = arraypt.Y;
@@ -118,13 +118,17 @@ namespace BGTviewer
             Boolean flag = false;
             Point arraypt = new Point(0, 0);
 
-            Point ct = new Point(0, 0);
-            Point ct2 = new Point(0, 0);
+            double a, b;
+
+            int count = 1;
 
             Boolean result = false; //디폴트 값 퇴영 xx
-            int margin = 10;
+            int margin = 15;
 
-            double x_max = 0.0, x_min = 1000.0, y_max = 0.0, y_min = 1000.0;
+            Point start = new Point();
+            Point end = new Point();
+
+            double x_max = 0.0, x_min = 3000.0, y_max = 0.0, y_min = 3000.0;
             foreach (var pt in list)
             {
                 if (flag == false)
@@ -132,29 +136,70 @@ namespace BGTviewer
                     arraypt.X = Math.Truncate(pt.X);
                     arraypt.Y = Math.Truncate(pt.Y);
 
+                    start = arraypt;
+
                     flag = true;
 
                     continue;
                 }
 
-                if ((arraypt.X - Math.Truncate(pt.X) > 10 || Math.Truncate(pt.X) - arraypt.X > 10) 
-                    && (arraypt.Y - Math.Truncate(pt.Y) > 10 || Math.Truncate(pt.Y) - arraypt.Y > 10))
+                if ((arraypt.X - Math.Truncate(pt.X) > 3 || Math.Truncate(pt.X) - arraypt.X > 3) 
+                    || (arraypt.Y - Math.Truncate(pt.Y) > 3 || Math.Truncate(pt.Y) - arraypt.Y > 3))
                 {
-                    if (x_max - x_min > margin || y_max - y_min > margin) result = true; //////////////////////////////////이부분 잘 모르겠음
-                    Debug.WriteLine("i번째 fig " + i + " xmax " + x_max + " xmin " + x_min + " ymax " + y_max + " ymin " + y_min);
+                    end = arraypt;
 
-                    x_max = 0.0; x_min = 1000.0; y_max = 0.0; y_min = 1000.0;
+                    if(Math.Abs(start.X - end.X) > margin || Math.Abs(start.Y - end.Y) > margin)
+                    {
+                        result = true; // 시작점과 끝점이 margin 이상 차이가 나면 line 퇴영 (방법 1)
+                        Debug.WriteLine("start x = " + start.X + " start y = " + start.Y + " end x = " + end.X + " end y = " + end.Y);
+                    }
+
+                    /*if (x_max - x_min > margin || y_max - y_min > margin)
+                    {
+                        a = x_max - x_min;
+                        b = y_max - y_min;
+                        Debug.WriteLine(i + "도형 점 아님");
+                        Debug.WriteLine("w_width = " + a + " x_max = " + x_max +" x_min = " + x_min);
+                        Debug.WriteLine("y_height = " + b+ " y_max = " + y_max + " y_min = " + y_min);
+                        result = true; /////////////////////////////점의 최대 최소 값이 margin 값 이상이면 점이 아닌 선 => 퇴영 (방법 2)
+                        
+                    }*/
+
+
+                    count = count + 1;
+
+                    //Debug.WriteLine("i번째 fig " + i + " xmax " + x_max + " xmin " + x_min + " ymax " + y_max + " ymin " + y_min);
+                    //x_max = 0.0; x_min = 3000.0; y_max = 0.0; y_min = 3000.0;
+
+                    start = pt;
                 }
 
-                if (arraypt.X > x_max) x_max = arraypt.X;
-                if (arraypt.X < x_min) x_min = arraypt.X;
-                if (arraypt.Y > y_max) y_max = arraypt.Y;
-                if (arraypt.Y < y_min) y_min = arraypt.Y;
+                //if (arraypt.X > x_max) x_max = arraypt.X;
+                //if (arraypt.X < x_min) x_min = arraypt.X;
+                //if (arraypt.Y > y_max) y_max = arraypt.Y;
+                //if (arraypt.Y < y_min) y_min = arraypt.Y;
 
 
                 arraypt.X = (int)(pt.X);
                 arraypt.Y = (int)(pt.Y);
             }
+
+            Debug.WriteLine(i + "번째 도형 count " + count);
+
+            /*if (i == 1 && count <=10) // 점이 몇 개 이하면 퇴영
+            {
+                result = true;
+                Debug.WriteLine("1번째 도형 count result true" + count);
+            }else if (i == 3 && count<=14)
+            {
+                result = true;
+                Debug.WriteLine("3번째 도형 count result true" + count);
+            }
+            else if(i==5 && count<=24)
+            {
+                result = true;
+                Debug.WriteLine("5번째 도형 count result true " + count);
+            }*/
 
             return result;
         }

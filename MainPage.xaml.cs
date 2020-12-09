@@ -119,8 +119,61 @@ namespace BGTviewer
 
         public void Bt_OD(object sender, RoutedEventArgs e)/////////////////////중복곤란
         {
+            var container = inkCanvas.InkPresenter.StrokeContainer;
+            var strokes = container.GetStrokes();
+            var bounds = container.BoundingRect;
+            Debug.WriteLine("가로 " + bounds.Right + " 세로 " + bounds.Bottom);
+
             OverlappingDifficulty od = new OverlappingDifficulty();
             od.Overlapping_difficulty(figure);
+            /*
+            List<Point> hit1 = od.a;
+            List<Point> hit2 = od.b;
+
+            Point ap = od.ap;
+            Point bp = od.bp;
+
+            Point tem_hit1 = ap;
+            Point tem_hit2 = bp;
+            
+            foreach (var hit_element in hit1)
+            {
+                if (hit_element != ap)
+                {
+                    var Line1 = new Line()
+                    {
+                        Stroke = new SolidColorBrush(Windows.UI.Colors.Red),
+                        StrokeThickness = 3,
+                        StrokeDashArray = new DoubleCollection() { 5, 2 },
+                        X1 = hit_element.X,
+                        Y1 = hit_element.Y,
+                        X2 = tem_hit1.X,
+                        Y2 = tem_hit1.Y,
+                    };
+                    selectionCanvas.Children.Add(Line1);
+                    tem_hit1 = hit_element;
+                }
+            }
+            
+            foreach (var hit_element in hit2)
+            {
+                if (hit_element != bp)
+                {
+                    var Line2 = new Line()
+                    {
+                        Stroke = new SolidColorBrush(Windows.UI.Colors.Purple),
+                        StrokeThickness = 3,
+                        StrokeDashArray = new DoubleCollection() { 5, 2 },
+                        X1 = hit_element.X,
+                        Y1 = hit_element.Y,
+                        X2 = tem_hit2.X,
+                        Y2 = tem_hit2.Y,
+                    };
+                    selectionCanvas.Children.Add(Line2);
+                    tem_hit2 = hit_element;
+                }
+            }
+            */
             ShowReport(od.OverlappingReport());
             OD.Text = od.PSV.ToString();
         }
@@ -304,7 +357,6 @@ namespace BGTviewer
 
                 IInputStream stream = await file.OpenSequentialReadAsync();
                 await inkCanvas.InkPresenter.StrokeContainer.LoadAsync(stream);
-
 
                 //var a = inkCanvas.InkPresenter.StrokeContainer.GetStrokes().ElementAt(0).GetInkPoints().ElementAt(0); 
             }

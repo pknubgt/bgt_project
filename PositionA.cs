@@ -25,14 +25,15 @@ namespace BGTviewer
         {
 
             Debug.WriteLine("도형버튼눌림");
-            double inch = rect.Height * (1 / 8); //용지의 세로 길이의 1/8을 1 inch로 함 (실제 인치 수를 대입하니까 용지 크기가 제각각이라서 결과가 다르게 나옴) 
-            float psv = 0;
+            double inch = rect.Right / 8; //용지의 세로 길이의 1/8을 1 inch로 함 (실제 인치 수를 대입하니까 용지 크기가 제각각이라서 결과가 다르게 나옴) 
             Point rectStart = new Point(rect.Left, rect.Top);
             Point rectCenter = new Point((rect.Left + rect.Right) / 2, (rect.Top + rect.Bottom) / 2);
             Point rectEnd = new Point(rect.Right, rect.Bottom);
 
             Point positionA = fA.Center; //도형A의 중점을 기준으로 위치를 잡음
             Debug.WriteLine(positionA);
+            double s = rect.Top + inch;
+            Debug.WriteLine("rect.Top + inch " + s + "  inch " + inch + "  fa  " + fA.Start.Y);
 
             //fA의 시작점과 끝점이 용지의 중앙 3인치 평방 내에 속하는지 비교
             if ((rectCenter.X - 3 * inch) <= fA.Start.X && fA.Start.X <= (rectCenter.X + 3 * inch) &&
@@ -42,10 +43,10 @@ namespace BGTviewer
             {   //자기중심적 위치
                 psv = 5.0f;
             }//용지 테두리 1인치 내에 fA의 시작점과 끝점이 모두 있는지 판단
-            else if ((rect.Right - inch) <= fA.Start.X && fA.End.X <= (rect.Right) ||
-                (rect.Left <= fA.Start.X) && (fA.End.X <= rect.Left + inch) ||
-                (rect.Top - inch) <= fA.End.Y && fA.Start.Y <= (rect.Top) ||
-                (rect.Bottom <= fA.End.Y) && (fA.Start.Y <= rect.Bottom + inch))
+            else if ((rect.Right - inch) <= fA.Start.X || (rect.Right - inch) <= fA.Center.X ||
+                (fA.Center.X <= rect.Left + inch) || (fA.Start.X <= rect.Left + inch) ||
+                (rect.Top + inch) >= fA.Start.Y || (rect.Top + inch) >= fA.Center.Y ||
+                (fA.Center.Y >= rect.Bottom - inch) || (fA.Start.Y >= rect.Bottom - inch))
             {   //비정상적 위치
                 psv = 10.0f;
             }//fA의 끝점이 용지 상부 1/3에 속하는지 확인
@@ -63,4 +64,3 @@ namespace BGTviewer
         }
     }
 }
-
