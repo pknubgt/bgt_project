@@ -16,6 +16,12 @@ class OverlappingDifficulty
     private List<string> overlappinginfo = new List<string>();
     private double psv = 1.0;
 
+    //public List<Point> a = new List<Point>();
+    //public List<Point> b = new List<Point>();
+    //public Point ap = new Point();
+    //public Point bp = new Point();
+
+
     public double PSV
     {
         get { return psv; }
@@ -34,6 +40,7 @@ class OverlappingDifficulty
         {
             result_figureA = OD_figure(figure[0].Points);
             Debug.WriteLine("figure A result = " + result_figureA);
+            overlappinginfo.Add("figure A result = " + result_figureA);
         }
 
         if (figure[4].Points != null)
@@ -41,12 +48,14 @@ class OverlappingDifficulty
 
             result_figure4 = OD_figure(figure[4].Points);
             Debug.WriteLine("figure 4 result = " + result_figure4);
+            overlappinginfo.Add("figure 4 result = " + result_figure4);
         }
 
         if (figure[7].Points != null)
         {
             result_figure7 = check_crossLine(figure[7].Points);
             Debug.WriteLine("figure 7 result = " + result_figure7);
+            overlappinginfo.Add("figure 7 result = " + result_figure7);
         }
 
         if (result_figureA == true)
@@ -175,21 +184,36 @@ class OverlappingDifficulty
         List<Point> hit2 = new List<Point>();
         bool hit_bool = false;//list 변경 변수
         Boolean res = true;
+        //int i = 0;
+        //int j = 0;
+        Point zero = new Point(0, 0);
 
+        //if (points[0].X == 0 && points[0].Y == 0)
+        //{
+        //    points.Remove(points[0]);
+        //}
 
         foreach (var pt in points)
         {
+            if (pt.X == 0 && pt.Y == 0)
+            {
+                points.Remove(pt);
+                continue;
+            }
+
             if (hit1 == null)
             {
                 arraypt.X = Math.Truncate(pt.X);
                 arraypt.Y = Math.Truncate(pt.Y);
                 hit1.Add(arraypt);
-
+                //Debug.WriteLine("x0 = " + arraypt.X + " Y0 = " + arraypt.Y);
                 continue;
             }
-            if (arraypt.X - Math.Truncate(pt.X) > 10 || Math.Truncate(pt.X) - arraypt.X > 10) //사이에 10 이상 차이가 나면 연속된 좌표가 끊긴 것
+            if ((arraypt.X - Math.Truncate(pt.X) > 7 || Math.Truncate(pt.X) - arraypt.X > 7)&& arraypt!=zero) //사이에 10 이상 차이가 나면 연속된 좌표가 끊긴 것
             {
                 hit_bool = true;//연속된 좌표가 끊기면 true => 다음 list에 다음 도형의 좌표 삽입
+                //Debug.WriteLine("x1 = " + arraypt.X + " Y1 = " + arraypt.Y);
+                //Debug.WriteLine("X2 = " + pt.X + " Y2 = " + pt.Y);
             }
 
             arraypt.X = (int)(pt.X);
@@ -198,12 +222,26 @@ class OverlappingDifficulty
             if (hit_bool == false)
             {
                 hit1.Add(arraypt);
+                //if(i == 0)
+                //{
+                //    ap = arraypt;
+                //    i = i + 1;
+                //}
+                
             }
             else
             {
                 hit2.Add(arraypt);
+                //if (j == 0)
+                //{
+                //   ap = arraypt;
+                //    j = j + 1;
+                //}
             }
         }
+
+        //a = hit1;
+        //b = hit2;
 
         /* Point tem_hit = hit1[0];
 
@@ -220,15 +258,15 @@ class OverlappingDifficulty
 
     public bool compare(List<Point> a, List<Point> b)
     {
-        Boolean res = false;
+        Boolean res = true;
 
         foreach (var a_element in a)
         {
             foreach (var b_element in b)
             {
-                if ((a_element.X + 3 > b_element.X && a_element.X - 3 < b_element.X) && a_element.Y == b_element.Y)
+                if ((a_element.X + 3 > b_element.X && a_element.X - 3 < b_element.X) && (a_element.Y + 3 > b_element.Y && a_element.Y - 3 < b_element.Y))
                 { // 도형의 오차 3 두고 좌표가 겹쳤는지 비교
-                    res = true;
+                    res = false;
                     //sum = sum + 1;
                     Debug.WriteLine("A element= (x)" + a_element.X + "(y)" + a_element.Y);
                     Debug.WriteLine("B element= (x)" + b_element.X + "(y)" + b_element.Y);

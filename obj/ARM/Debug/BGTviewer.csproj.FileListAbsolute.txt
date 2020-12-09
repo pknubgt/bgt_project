@@ -1,0 +1,7 @@
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\App.g.i.cs
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\App.g.cs
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\App.xaml
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\MainPage.xaml
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\App.xbf
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\MainPage.xbf
+D:\Project\Project_bgt\bgt_project\obj\ARM\Debug\XamlSaveStateFile.xml
